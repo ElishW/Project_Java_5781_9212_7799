@@ -45,6 +45,9 @@ public class VectorTest {
     @Test
     public void normalize() {
     }
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/master
 }

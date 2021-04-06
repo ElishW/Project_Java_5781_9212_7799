@@ -35,12 +35,12 @@ public class Vector {
         return new Vector(this.head.x.coord+v.head.x.coord,this.head.y.coord+v.head.y.coord,this.head.z.coord+v.head.z.coord);
     }
 
-    public Vector substract(Vector v)
+    public Vector subtractV(Vector v)
     {
         return new Vector(this.head.x.coord-v.head.x.coord,this.head.y.coord-v.head.y.coord,this.head.z.coord-v.head.z.coord);
     }
 
-    public Vector substract(Point3D p)
+    public Vector subtractP(Point3D p)
     {
         return new Vector(this.head.x.coord-p.x.coord,this.head.y.coord-p.y.coord,this.head.z.coord-p.z.coord);
     }
@@ -67,6 +67,7 @@ public class Vector {
 
     public double length()
     {
+
         return Math.sqrt(lengthSquared());
     }
 

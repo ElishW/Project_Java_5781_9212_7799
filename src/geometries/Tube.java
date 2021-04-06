@@ -10,7 +10,13 @@ public class Tube {
 
     public Vector getNormal(Point3D p)
     {
-        return null;
+        Vector v = axisRay.getDir();
+        Point3D p0 = axisRay.getP0();
+        Vector pp0 = new Vector(p.getX().coord-p0.getX().coord,p.getY().coord-p0.getY().coord,p.getZ().coord-p0.getZ().coord);
+        double t= v.dotProduct(pp0);
+        Point3D o = p0.add(v.scale(t));
+        Vector n = new Vector(p.subtract(o));
+        return n.normalize();
     }
 
     public Tube(Ray axisRay, double radius) {

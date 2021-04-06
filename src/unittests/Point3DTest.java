@@ -3,7 +3,7 @@ package unittests;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Vector;
-
+import static primitives.Util.isZero;
 import static org.junit.Assert.*;
 
 public class Point3DTest {
@@ -31,9 +31,12 @@ public class Point3DTest {
         Point3D expected= new Point3D(2,4,6);
         assertEquals("addVector() wrong result ",expected,p );
         // =============== Boundary Values Tests ==================
-        Vector v3 = new Vector(-1.0, -2.0, -3.0);
-        assertThrows("add() does not throw an exception",
-                IllegalArgumentException.class, () -> p1.add(v3));
+        Vector v3 = new Vector(-1, -2, -3);
+        Point3D po=p1.add(v3);
+         try {
+            Vector v=new Vector(po);
+            fail("add() does not throw an exception");
+         } catch (Exception e) {}
     }
 
     @Test

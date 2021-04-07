@@ -1,3 +1,6 @@
+// Elisheva Wechsler 329589212 - welish2000@gmail.com
+// Noa Ghozlan 1507799 - noadahlia@gmail.com
+
 package com;
 
 import primitives.*;

@@ -9,7 +9,8 @@ public class Sphere {
 
     public Vector getNormal(Point3D p)
     {
-        return null;
+        Vector n = new Vector(p.subtract(center));
+        return n.normalize();
     }
 
     public Sphere(Point3D center, double radius) {

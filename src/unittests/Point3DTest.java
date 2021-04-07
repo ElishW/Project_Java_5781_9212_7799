@@ -37,7 +37,7 @@ public class Point3DTest {
             Vector v=new Vector(po);
             fail("add() does not throw an exception");
          } catch (Exception e) {}
-    }
+
 
     @Test
     public void distanceSquared() {

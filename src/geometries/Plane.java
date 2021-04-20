@@ -3,7 +3,7 @@ package geometries;
 import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
-
+import static primitives.Util.*;
 import java.util.List;
 
 public class Plane implements Geometry{
@@ -32,7 +32,43 @@ public class Plane implements Geometry{
      * @return List of intersectable Point3D if they exist or null
      */
     @Override
-    public List<Point3D> findIntersections(Ray ray){return null;}
+    public List<Point3D> findIntersections(Ray ray){
+        Point3D P0 = ray.getP0();
+        Vector v = ray.getDir();
+
+        Vector n = normal;
+//Checking if Q0=P0
+        if(q0.equals(P0)){
+            return  null;
+        }
+
+        Vector P0_Q0 = q0.subtract(P0);
+
+        //numerator
+        double nP0Q0  = alignZero(n.dotProduct(P0_Q0));
+
+        //Checking if the numerator is null
+        if (isZero(nP0Q0 )){
+            return null;
+        }
+
+        //denominator
+        double nv = alignZero(n.dotProduct(v));
+
+        // ray is lying in the plane axis
+        if(isZero(nv)){
+            return null;
+        }
+
+        double  t = alignZero(nP0Q0  / nv);
+//Tacking only t>0
+        if (t <=0){
+            return  null;
+        }
+        Point3D point=  P0.add(v.scale(t));
+
+        return List.of(point);
+    }
 
     public Vector getNormal(){return normal;}
 

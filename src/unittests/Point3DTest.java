@@ -24,20 +24,22 @@ public class Point3DTest {
 
     @Test
     public void add() {
-        Point3D p1=new Point3D(1,2,3);
+        Point3D p1 = new Point3D(1, 2, 3);
         // ============ Equivalence Partitions Tests ==============
-        Vector v2=new Vector(1,2,3);
-        Point3D p =p1.add(v2);
-        Point3D expected= new Point3D(2,4,6);
-        assertEquals("addVector() wrong result ",expected,p );
+        Vector v2 = new Vector(1, 2, 3);
+        Point3D p = p1.add(v2);
+        Point3D expected = new Point3D(2, 4, 6);
+        assertEquals("addVector() wrong result ", expected, p);
         // =============== Boundary Values Tests ==================
         Vector v3 = new Vector(-1, -2, -3);
-        Point3D po=p1.add(v3);
-         try {
-            Vector v=new Vector(po);
+        Point3D po = p1.add(v3);
+        try {
+            Vector v = new Vector(po);
             fail("add() does not throw an exception");
-         } catch (Exception e) {}
+        } catch(Exception e) {
 
+        }
+    }
 
     @Test
     public void distanceSquared() {

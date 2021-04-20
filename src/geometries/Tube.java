@@ -15,7 +15,7 @@ public class Tube implements Geometry{
     {
         Vector v = axisRay.getDir();
         Point3D p0 = axisRay.getP0();
-        Vector pp0 = new Vector(p.getX().coord-p0.getX().coord,p.getY().coord-p0.getY().coord,p.getZ().coord-p0.getZ().coord);
+        Vector pp0 = new Vector(p.getX()-p0.getX(),p.getY()-p0.getY(),p.getZ()-p0.getZ());
         double t= v.dotProduct(pp0);
         Point3D o = p0.add(v.scale(t));
         Vector n = new Vector(p.subtract(o));

@@ -16,18 +16,17 @@ public class Point3D {
         this.z = z;
     }
 
-    public Coordinate getX() {
-        return x;
+    public double getX() {
+        return x.coord;
     }
 
-    public Coordinate getY() {
-        return y;
+    public double getY() {
+        return y.coord;
     }
 
-    public Coordinate getZ() {
-        return z;
+    public double getZ() {
+        return z.coord;
     }
-
     public final static Point3D ZERO = new Point3D(0.0,0.0,0.0);
     public Point3D(Point3D p)
     {
@@ -38,12 +37,12 @@ public class Point3D {
 
     public Vector subtract(Point3D p)
     {
-        return new Vector(new Point3D(this.x.coord - p.x.coord, this.y.coord - p.y.coord,this.z.coord - p.z.coord));
+        return new Vector(new Point3D(this.getX()- p.getX(), this.getY() - p.getY(),this.getZ() - p.getZ()));
     }
 
     public Point3D add(Vector v)
     {
-        return new Point3D(this.x.coord+v.head.x.coord,this.y.coord+v.head.y.coord,this.z.coord+v.head.z.coord);
+        return new Point3D(this.getX()+v.head.getX(),this.getY()+v.head.getY(),this.getZ()+v.head.getZ());
     }
 
     public double distanceSquared(Point3D p)
@@ -53,7 +52,7 @@ public class Point3D {
 
     public double distance(Point3D p)
     {
-        return (this.x.coord-p.x.coord)*(this.x.coord-p.x.coord)+(this.y.coord-p.y.coord)*(this.y.coord-p.y.coord)+(this.z.coord-p.z.coord)*(this.z.coord-p.z.coord);
+        return (this.getX()-p.getX())*(this.getX()-p.getX())+(this.getY()-p.getY())*(this.getY()-p.getY())+(this.getZ()-p.getZ())*(this.getZ()-p.getZ());
     }
 
     @Override

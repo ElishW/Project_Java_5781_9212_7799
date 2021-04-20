@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Plane {
+public class Plane implements Geometry{
     Point3D q0;
     Vector normal;
 
@@ -27,11 +27,15 @@ public class Plane {
         return q0;
     }
 
-    public Vector getNormal() {
-        return normal;
-    }
-
+    /**
+     * @param ray
+     * @return List of intersectable Point3D if they exist or null
+     */
+    @Override
     public List<Point3D> findIntersections(Ray ray){return null;}
+
+    public Vector getNormal(){return normal;}
+
 
 
     @Override
@@ -40,5 +44,11 @@ public class Plane {
                 "q0=" + q0 +
                 ", normal=" + normal +
                 '}';
+    }
+
+
+    @Override
+    public Vector getNormal(Point3D p) {
+        return normal;
     }
 }

@@ -6,7 +6,7 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Cylinder {
+public class Cylinder{
     double height;
 
     public Vector getNormal(Point3D p)

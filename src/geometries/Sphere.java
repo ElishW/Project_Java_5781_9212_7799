@@ -6,10 +6,11 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Sphere {
+public class Sphere implements Geometry {
     Point3D center;
     double radius;
 
+    @Override
     public Vector getNormal(Point3D p)
     {
         Vector n = new Vector(p.subtract(center));
@@ -29,6 +30,11 @@ public class Sphere {
         return radius;
     }
 
+    /**
+     * @param ray
+     * @return List of intersectable Point3D if they exist or null
+     */
+    @Override
     public List<Point3D> findIntersections(Ray ray){return null;}
 
 

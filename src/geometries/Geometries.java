@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Geometries  {
+public class Geometries implements Intersectable {
 
     public List<Intersectable> lstOfGeometries;
 

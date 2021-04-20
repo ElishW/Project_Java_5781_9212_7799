@@ -6,10 +6,11 @@ import primitives.Vector;
 
 import java.util.List;
 
-public class Tube {
+public class Tube implements Geometry{
     Ray axisRay;
     double radius;
 
+    @Override
     public Vector getNormal(Point3D p)
     {
         Vector v = axisRay.getDir();
@@ -34,7 +35,13 @@ public class Tube {
         return radius;
     }
 
+    /**
+     * @param ray
+     * @return List of intersectable Point3D if they exist or null
+     */
+    @Override
     public List<Point3D> findIntersections(Ray ray){return null;}
+
     @Override
     public String toString() {
         return "Tube{" +

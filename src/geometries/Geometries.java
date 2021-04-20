@@ -35,7 +35,20 @@ public class Geometries implements Intersectable {
     }
 
     public List<Point3D> findIntersections(Ray ray) {
-        return null;
+        List<Point3D> result = null;
+        for (Intersectable item : lstOfGeometries) {
+            //get intersections points of a particular item from lstOfGeometries
+            List<Point3D> itempoints = item.findIntersections(ray);
+            if(itempoints!= null){
+                //first time initialize result to new LinkedList
+                if(result== null){
+                    result= new LinkedList<>();
+                }
+                //add all item points to the resulting list
+                result.addAll(itempoints);
+            }
+        }
+        return result;
     }
 
 

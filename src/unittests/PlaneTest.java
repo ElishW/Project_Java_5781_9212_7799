@@ -52,7 +52,7 @@ public class PlaneTest {
                 new Point3D(0, 1, 0));
         double sqrt3 = Math.sqrt(1d / 3);
         assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3), p.getNormal());
-        assertTrue("the normal vector length different to 1",p.getNormal().length()==1);
+        assertTrue("the normal vector length different to 1",p.getNormal(new Point3D(0,0,0)).length()==1);
 
     }
 

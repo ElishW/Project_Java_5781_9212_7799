@@ -47,10 +47,7 @@ public class VectorTest {
         Vector v3 = new Vector(1, 2, 3);
         assertThrows("subtractV() does not throw an exception",
                 IllegalArgumentException.class, () -> v1.substractV(v3));
-        //try {
-        //    v1.crossProduct(v2);
-        //    fail("subtractV() does not throw an exception");
-        //} catch (Exception e) {}
+
     }
 
     @Test
@@ -62,9 +59,9 @@ public class VectorTest {
         Vector vr=v1.substractP(p1);
         assertEquals("substractP() wrong result",new Vector(-2,0,2),vr);
 
-        // ============ Equivalence Partitions Tests ==============
+        // ============ Boundary Values Test ==============
         // TC02: the head of the vector and the point are equal so the result will be zero vector
-        Point3D p3 = new Point3D(-1, -2, -3);
+        Point3D p3 = new Point3D(1, 2, 3);
         assertThrows("substractP() for opposite vectors does not throw an exception",
                 IllegalArgumentException.class, () -> v1.substractP(p3));
     }

@@ -4,6 +4,8 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 public class Tube {
     Ray axisRay;
     double radius;
@@ -32,6 +34,7 @@ public class Tube {
         return radius;
     }
 
+    public List<Point3D> findIntersections(Ray ray){return null;}
     @Override
     public String toString() {
         return "Tube{" +

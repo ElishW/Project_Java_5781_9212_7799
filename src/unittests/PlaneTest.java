@@ -5,7 +5,7 @@ import geometries.Polygon;
 import org.junit.Test;
 import primitives.Point3D;
 import primitives.Vector;
-
+import static primitives.Util.*;
 import static org.junit.Assert.*;
 
 public class PlaneTest {
@@ -50,5 +50,9 @@ public class PlaneTest {
         assertEquals("Bad normal to triangle", new Vector(sqrt3, sqrt3, sqrt3), p.getNormal());
         assertTrue("the normal vector length different to 1",p.getNormal().length()==1);
 
+    }
+
+    @Test
+    public void findIntsersections() {
     }
 }

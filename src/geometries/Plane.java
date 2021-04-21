@@ -37,7 +37,7 @@ public class Plane implements Geometry{
         Vector v = ray.getDir();
 
         Vector n = normal;
-//Checking if Q0=P0
+        //Checking if Q0=P0
         if(q0.equals(P0)){
             return  null;
         }

@@ -46,6 +46,7 @@ public class Camera {
             vTo.normalize();
             vUp.normalize();
             vRight.normalize();
+
         }
 
     }

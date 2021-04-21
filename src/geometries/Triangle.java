@@ -23,7 +23,7 @@ public class Triangle extends Polygon {
      * @return List of intersectable Point3D if they exist or null
      */
     @Override
-    public List<Point3D> findIntersections(Ray ray){return null;}
+    public List<Point3D> findIntersections(Ray ray){return super.findIntersections(ray);}
 
 
 }

@@ -62,18 +62,24 @@ public class Sphere implements Geometry {
             double t2 = alignZero(tm + th);
             // We take only t>0
             if (t1 > 0 && t2 > 0) {
-                Point3D P1 = P0.add(v.scale(t1));
-                Point3D P2 = P0.add(v.scale(t2));
+            //Point3D P1 = P0.add(v.scale(t1));
+            //Point3D P2 = P0.add(v.scale(t2));
+                Point3D P1 =ray.getPoint(t1);
+                Point3D P2 =ray.getPoint(t2);
                 return List.of(P1, P2);
             }
             //if t1>0 and t2<=0
             if (t1 > 0) {
-                Point3D P1 = P0.add(v.scale(t1));
+                //Point3D P1 = P0.add(v.scale(t1));
+                Point3D P1 =ray.getPoint(t1);
+
                 return List.of(P1);
             }
             //if t2>0 and t1<=0
             if (t2 > 0) {
-                Point3D P2 = P0.add(v.scale(t2));
+               // Point3D P2 = P0.add(v.scale(t2));
+                Point3D P2 =ray.getPoint(t2);
+
                 return List.of(P2);
             }
             return null;

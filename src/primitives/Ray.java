@@ -1,5 +1,7 @@
 package primitives;
 
+import static primitives.Util.isZero;
+
 public class Ray {
     Point3D p0;
     Vector dir;
@@ -17,6 +19,12 @@ public class Ray {
         return dir;
     }
 
+    public Point3D getPoint(double t){
+        if (isZero(t)){
+            return  p0;
+        }
+        return p0.add(dir.scale(t));
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

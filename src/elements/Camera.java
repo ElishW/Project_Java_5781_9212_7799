@@ -46,9 +46,32 @@ public class Camera {
         return _height;
     }
 
-    // constructing a ray passing through pixel(i,j) of the view plane
+    // constructs a ray which is passing through pixel(i,j) of the view plane
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        return null;
+        Point3D Pc = _p0.add(_vTo.scale(_distance));
+
+        double Rx = _width / nX;
+        double Ry = _height / nY;
+
+        Point3D Pij = Pc;
+
+        double Xj = (j - (nX - 1) / 2d) * Rx;
+        double Yi = -(i - (nY - 1) / 2d) * Ry;
+
+        if (isZero(Xj) && isZero(Yi)) {
+            return new Ray(_p0, Pij.subtract(_p0));
+        }
+        if (isZero(Xj)) {
+            Pij = Pij.add(_vUp.scale(Yi));
+            return new Ray(_p0, Pij.subtract(_p0));
+        }
+        if (isZero(Yi)) {
+            Pij = Pij.add(_vRight.scale(Xj));
+            return new Ray(_p0, Pij.subtract(_p0));
+        }
+
+        Pij = Pij.add(_vRight.scale(Xj).add(_vUp.scale(Yi)));
+        return new Ray(_p0, Pij.subtract(_p0));
     }
 
 

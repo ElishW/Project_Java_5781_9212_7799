@@ -5,12 +5,6 @@ import org.junit.Test;
 import elements.Camera;
 import primitives.*;
 
-/**
- * Testing Camera Class
- *
- * @author Dan
- *
- */
 public class CameraTest {
 
     /**
@@ -19,8 +13,11 @@ public class CameraTest {
      */
     @Test
     public void testConstructRayThroughPixel() {
-        Camera camera = new Camera(Point3D.ZERO, new Vector(0, 0, 1), new Vector(0, -1, 0)).setDistance(10);
-
+        Camera camera = new Camera.BuilderCamera(Point3D.ZERO, new Vector(0, 0, 1), new Vector(0, -1, 0))
+                .setDistance(10)
+                .setViewPlaneHeight(6)
+                .setViewPlaneWidth(6)
+                .build();
         // ============ Equivalence Partitions Tests ==============
         // TC01: 3X3 Corner (0,0)
         assertEquals("Bad ray", new Ray(Point3D.ZERO, new Vector(-2, -2, 10)),

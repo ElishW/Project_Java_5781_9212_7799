@@ -32,37 +32,37 @@ public class Vector {
 
     public Vector add(Vector v)
     {
-        return new Vector(this.head.x.coord+v.head.x.coord,this.head.y.coord+v.head.y.coord,this.head.z.coord+v.head.z.coord);
+        return new Vector(this.head.getX()+v.head.getX(),this.head.getY()+v.head.getY(),this.head.getZ()+v.head.getZ());
     }
 
     public Vector substractV(Vector v)
     {
-        return new Vector(this.head.x.coord-v.head.x.coord,this.head.y.coord-v.head.y.coord,this.head.z.coord-v.head.z.coord);
+        return new Vector(this.head.getX()-v.head.getX(),this.head.getY()-v.head.getY(),this.head.getZ()-v.head.getZ());
     }
 
     public Vector substractP(Point3D p)
     {
-        return new Vector(this.head.x.coord-p.x.coord,this.head.y.coord-p.y.coord,this.head.z.coord-p.z.coord);
+        return new Vector(this.head.getX()-p.getX(),this.head.getY()-p.getY(),this.head.getZ()-p.getZ());
     }
 
     public Vector scale(double s)
     {
-        return new Vector((this.head.x.coord)*s,(this.head.y.coord)*s,(this.head.z.coord)*s);
+        return new Vector((this.head.getX())*s,(this.head.getY())*s,(this.head.getZ())*s);
     }
 
     public double dotProduct(Vector v)
     {
-        return (this.head.x.coord)*(v.head.x.coord) + (this.head.y.coord)*(v.head.y.coord)+ (this.head.z.coord)*(v.head.z.coord);
+        return (this.head.getX())*(v.head.getX()) + (this.head.getY())*(v.head.getY())+ (this.head.getZ())*(v.head.getZ());
     }
 
     public Vector crossProduct(Vector v)
     {
-        return new Vector((this.head.y.coord)*(v.head.z.coord)-(this.head.z.coord)*(v.head.y.coord),(this.head.z.coord)*(v.head.x.coord)-(this.head.x.coord)*(v.head.z.coord), (this.head.x.coord)*(v.head.y.coord)-(this.head.y.coord)*(v.head.x.coord));
+        return new Vector((this.head.getY())*(v.head.getZ())-(this.head.getZ())*(v.head.getY()),(this.head.getZ())*(v.head.getX())-(this.head.getX())*(v.head.getZ()), (this.head.getX())*(v.head.getY())-(this.head.getY())*(v.head.getX()));
     }
 
     public double lengthSquared()
     {
-        return (this.head.x.coord*this.head.x.coord + this.head.y.coord*this.head.y.coord +this.head.z.coord*this.head.z.coord);
+        return (this.head.getX()*this.head.getX() + this.head.getY()*this.head.getY() +this.head.getZ()*this.head.getZ());
     }
 
     public double length()
@@ -83,7 +83,7 @@ public class Vector {
         {
             throw new ArithmeticException("cannot divide by 0");
         }
-        this.head= new Point3D((this.head.x.coord)/this.length(),(this.head.y.coord)/this.length(),(this.head.z.coord)/this.length());
+        this.head= new Point3D((this.head.getX())/this.length(),(this.head.getY())/this.length(),(this.head.getZ())/this.length());
         return this;
     }
 

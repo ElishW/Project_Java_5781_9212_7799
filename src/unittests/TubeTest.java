@@ -7,13 +7,13 @@ import static org.junit.Assert.*;
 public class TubeTest {
 
     @Test
-    public void getNormal() {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Test ==============
         //TC01: regular values
 
     }
 
     @Test
-    public void findIntsersections() {
+    public void testFindIntsersections() {
     }
 }

@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 public class SphereTest {
 
     @Test
-    public void getNormal() {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Test ==============
         //TC01: regular values
         Sphere s = new Sphere(new Point3D(1,2,3),2);

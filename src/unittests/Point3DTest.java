@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class Point3DTest {
 
     @Test
-    public void subtract() {
+    public void testSubtract() {
         Point3D p1=new Point3D (1,2,3);
         // ============ Equivalence Partitions Tests ==============
         Point3D p2=new Point3D (2,4,6);
@@ -23,7 +23,7 @@ public class Point3DTest {
     }
 
     @Test
-    public void add() {
+    public void testAdd() {
         Point3D p1 = new Point3D(1, 2, 3);
         // ============ Equivalence Partitions Tests ==============
         Vector v2 = new Vector(1, 2, 3);
@@ -42,7 +42,7 @@ public class Point3DTest {
     }
 
     @Test
-    public void distanceSquared() {
+    public void testDistanceSquared() {
         Point3D p1=new Point3D (10,7,8);
         // ============ Equivalence Partitions Tests ==============
         Point3D p2=new Point3D (6,4,8);
@@ -52,7 +52,7 @@ public class Point3DTest {
     }
 
     @Test
-    public void distance() {
+    public void testDistance() {
         Point3D p1=new Point3D (10,7,8);
         // ============ Equivalence Partitions Tests ==============
         Point3D p2=new Point3D (6,4,8);

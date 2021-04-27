@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 public class TriangleTest {
 
     @Test
-    public void getNormal() {
+    public void testGetNormal() {
         // ============ Equivalence Partitions Tests ==============
         // TC01: There is a simple single test here
         Triangle t = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
@@ -25,7 +25,7 @@ public class TriangleTest {
     }
 
     @Test
-    public void findIntersections() {
+    public void testFindIntersections() {
         Triangle tr = new Triangle(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
         Plane pl = new Plane(new Point3D(0, 0, 1), new Point3D(1, 0, 0), new Point3D(0, 1, 0));
         Ray ray;

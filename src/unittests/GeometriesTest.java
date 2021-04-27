@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class GeometriesTest {
 
     @Test
-    public void findIntersections() {
+    public void testFindIntersections() {
         Sphere mySphere = new Sphere(new Point3D(1, 0, 0), 1d);
         Triangle myTriangle = new Triangle (new Point3D(4,1,0),new Point3D(4,-1,0),new Point3D(4,0,1));
         Plane myPlane = new Plane(new Point3D(-1,0,0), new Vector (new Point3D (1,0,0)));

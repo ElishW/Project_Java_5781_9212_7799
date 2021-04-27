@@ -17,7 +17,7 @@ import static primitives.Util.isZero;
 public class VectorTest {
 
     @Test
-    public void add() {
+    public void testAdd() {
         Vector v1=new Vector (1,2,3);
         // ============ Equivalence Partitions Tests ==============
         Vector v2=new Vector (1, 2, 3);
@@ -36,7 +36,7 @@ public class VectorTest {
     }
 
     @Test
-    public void substractV() {
+    public void testSubstractV() {
         Vector v1=new Vector (1,2,3);
         // ============ Equivalence Partitions Tests ==============
         Vector v2=new Vector (2,4,6);
@@ -51,7 +51,7 @@ public class VectorTest {
     }
 
     @Test
-    public void substractP() {
+    public void testSubstractP() {
         // ============ Equivalence Partitions Tests ==============
         // TC01:when the head of the vector and the point aren't equal
         Vector v1 = new Vector(1, 2, 3);
@@ -67,7 +67,7 @@ public class VectorTest {
     }
 
     @Test
-    public void scale() {
+    public void testScale() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: the parameter s is != 0
         Vector v1 = new Vector(1, 2, 3);
@@ -83,7 +83,7 @@ public class VectorTest {
     }
 
     @Test
-    public void dotProduct() {
+    public void testDotProduct() {
         // ============ Equivalence Partitions Tests ==============
         // TC01:the angle between the vectors is between 0-90
         assertTrue("dotProduct(Vector) result", Util.isZero(1 - new Vector(1, 0, 0).dotProduct(new Vector(1, 1, 0))));
@@ -131,7 +131,7 @@ public class VectorTest {
     }
 
     @Test
-    public void lengthSquared() {
+    public void testLengthSquared() {
         Vector v1=new Vector (4,3,0);
         // ============ Equivalence Partitions Tests ==============
         double ls =v1.lengthSquared();
@@ -144,7 +144,7 @@ public class VectorTest {
     }
 
     @Test
-    public void length() {
+    public void testLength() {
         Vector v1=new Vector (4,3,0);
         // ============ Equivalence Partitions Tests ==============
         double l =v1.length();
@@ -157,7 +157,7 @@ public class VectorTest {
     }
 
     @Test
-    public void normalized() {
+    public void testNormalized() {
         // ============ Equivalence Partitions Tests ==============
         //TC01: verify if the function creates a new vector
         Vector v1=new Vector(1,2,3);
@@ -171,7 +171,7 @@ public class VectorTest {
     }
 
     @Test
-    public void normalize() {
+    public void testNormalize() {
         // ============ Equivalence Partitions Tests ==============
         Vector v1 = new Vector(1,2,3);
         Vector v2 = new Vector(v1.getHead());

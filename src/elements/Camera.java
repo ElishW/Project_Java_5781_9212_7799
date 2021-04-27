@@ -21,6 +21,7 @@ public class Camera {
         return vTo;
     }
 
+
     public Vector getvRight() {
         return vRight;
     }
@@ -38,16 +39,18 @@ public class Camera {
     }
 
     public Camera (Point3D _P0, Vector _vTo, Vector _vUp){
-        if(isZero(_vTo.dotProduct(_vUp))){
+        if(isZero(_vTo.dotProduct(_vUp))) {
             p0 = _P0;
-            vTo=_vTo;
-            vUp=_vUp;
-            vRight=_vTo.crossProduct(_vUp);
+            vTo = _vTo;
+            vUp = _vUp;
+            vRight = _vTo.crossProduct(_vUp);
             vTo.normalize();
             vUp.normalize();
             vRight.normalize();
-
         }
+        else
+            throw new IllegalArgumentException("vto and vup are not orthogonal");
+
 
     }
 
@@ -62,10 +65,12 @@ public class Camera {
         this.distance=_distance;
         return this;
     }
+
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
     {
      //Point3D Pc= this.p0+ (this.distance).scale(this.vTo);
         return null;
     }
+
 
 }

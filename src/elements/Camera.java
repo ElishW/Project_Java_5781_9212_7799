@@ -123,6 +123,7 @@ public class Camera {
             _vRight = _vTo.crossProduct(_vUp);
 
         }
+
     }
 
 }

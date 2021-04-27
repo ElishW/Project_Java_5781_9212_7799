@@ -37,9 +37,9 @@ public class Camera {
         return distance;
     }
 
-    public Camera (int x, int y , int z, Vector _vTo, Vector _vUp){
+    public Camera (Point3D _P0, Vector _vTo, Vector _vUp){
         if(isZero(_vTo.dotProduct(_vUp))){
-            p0 = new Point3D(x,y,z);
+            p0 = _P0;
             vTo=_vTo;
             vUp=_vUp;
             vRight=_vTo.crossProduct(_vUp);
@@ -51,7 +51,20 @@ public class Camera {
 
     }
 
-    public Ray constructRay(int nX, int nY, int j, int i){
+    public Camera setViewPlaneSize(double _width, double _height)
+    {
+        this.width=_width;
+        this.height=_height;
+        return this;
+    }
+    public Camera setDistance(double _distance)
+    {
+        this.distance=_distance;
+        return this;
+    }
+    public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
+    {
+     //Point3D Pc= this.p0+ (this.distance).scale(this.vTo);
         return null;
     }
 

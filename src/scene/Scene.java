@@ -15,7 +15,14 @@ public class Scene {
         name=_name;
         geometries=new Geometries();
     }
-
+    public Scene setAmbientLight(AmbientLight _amLight){
+        ambientLight=_amLight;
+        return this;
+    }
+    public Scene setBackground(Color _color){
+        background=_color;
+        return this;
+    }
     /**
      * Builder Scene
      */

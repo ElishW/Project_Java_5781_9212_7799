@@ -105,6 +105,12 @@ public class Camera {
             return this;
         }
 
+        public BuilderCamera setViewPlaneSize(double width, double height) {
+            _width = width;
+            _height = height;
+            return this;
+        }
+
         public Camera build() {
             Camera camera = new Camera(this);
             return camera;

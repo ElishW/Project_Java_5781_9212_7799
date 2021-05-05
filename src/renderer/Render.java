@@ -66,17 +66,15 @@ public class Render {
                 throw new MissingResourceException("missing imageWriter", ImageWriter.class.getName(), "");
             int nX = imageWriter.getNx();
             int nY = imageWriter.getNy();
-            for (int i = 0; i < nY; i++) {
-                for (int j = 0; j < nX; j++) {
-                    if (i % interval == 0)
-                    {
-                        imageWriter.writePixel(j, i, color);
-                    }
-                    else if (j % interval == 0)
-                    {
-                        imageWriter.writePixel(j, i, color);
-                    }
 
+            for (int i = 0; i < nX; i +=interval) {
+                for (int j = 0; j < nY; j++) {
+                    imageWriter.writePixel(i, j, color);
+                }
+            }
+            for (int i = 0; i < nY; i +=interval) {
+                for (int j = 0; j < nX; j++) {
+                    imageWriter.writePixel(j, i, color);
                 }
             }
         }

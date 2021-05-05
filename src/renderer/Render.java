@@ -70,7 +70,8 @@ public class Render {
                 for (int j = 0; j < nX; j++) {
                     if (i % interval == 0)
                     {
-                        imageWriter.writePixel(j, i, color);
+
+                       // imageWriter.writePixel(j, i, color);
                     }
                     else if (j % interval == 0)
                     {

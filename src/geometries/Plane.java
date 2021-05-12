@@ -6,7 +6,7 @@ import primitives.Vector;
 import static primitives.Util.*;
 import java.util.List;
 
-public class Plane implements Geometry{
+public class Plane extends Geometry{
     Point3D q0;
     Vector normal;
 

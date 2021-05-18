@@ -51,7 +51,7 @@ public class PointLight extends Light implements LightSource{
 
         double d = position.distance(p); //distance
         double tmp = kC+kL*d+kQ*(d*d);
-        return (getIntensity().scale(1/tmp));
+        return (getIntensity().reduce(tmp));
     }
 
     /**
@@ -62,7 +62,7 @@ public class PointLight extends Light implements LightSource{
      */
     @Override
     public Vector getL(Point3D p) {
-        return position.subtract(p);
+        return position.subtract(p).normalize();
     }
 
     /*

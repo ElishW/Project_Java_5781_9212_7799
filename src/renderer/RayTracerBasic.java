@@ -1,5 +1,6 @@
 package renderer;
 
+import geometries.Intersectable;
 import primitives.Color;
 import primitives.Point3D;
 import primitives.Ray;
@@ -14,18 +15,19 @@ public class RayTracerBasic extends RayTracerBase {
 
     @Override
     public Color traceRay(Ray _ray) {
-        List<Point3D> intersections = scene.geometries.findIntersections(_ray);
+        var intersections = scene.geometries.findGeoIntersections(_ray);
         if (intersections != null) {
-            Point3D closestPoint = _ray.findClosestPoint(intersections);
+            Intersectable.GeoPoint closestPoint = _ray.findClosestGeoPoint(intersections);
             return calcColor(closestPoint);
         }
         //there isn't intersection
         return scene.background;
     }
 
-    private Color calcColor(Point3D point)
+    private Color calcColor(Intersectable.GeoPoint point)
     {
-        //returning the intensity of the light of the scene
-        return scene.ambientLight.getIntensity();
+        return scene.ambientlight.getIntensity()
+                .add(point.geometry.getEmission());
+
     }
 }

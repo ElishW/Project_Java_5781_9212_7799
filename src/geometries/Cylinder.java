@@ -47,7 +47,6 @@ public class Cylinder extends Tube{
         return _height;
     }
 
-    public List<Point3D> findIntersections(Ray ray){return null;}
 
 
     @Override

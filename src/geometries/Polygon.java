@@ -87,16 +87,14 @@ public class Polygon extends Geometry {
 	}
 
 
-	/**
-	 * @param ray
-	 * @return List of intersectable Point3D if they exist or null
-	 */
+
+
 	@Override
-	public List<Point3D> findIntersections(Ray ray) {
-		List<Point3D> result = plane.findIntersections(ray);
+	public List<GeoPoint> findGeoIntersections(Ray ray) {
+		List<GeoPoint> result = plane.findGeoIntersections(ray);
 
 		if (result == null) {
-			return result;
+			return null;
 		}
 
 		Point3D P0 = ray.getP0();

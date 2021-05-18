@@ -27,12 +27,10 @@ public class Plane extends Geometry{
         return q0;
     }
 
-    /**
-     * @param ray
-     * @return List of intersectable Point3D if they exist or null
-     */
+
+
     @Override
-    public List<Point3D> findIntersections(Ray ray){
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D P0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -61,13 +59,14 @@ public class Plane extends Geometry{
         }
 
         double  t = alignZero(nP0Q0  / nv);
-//Tacking only t>0
+        //Tacking only t>0
         if (t <=0){
             return  null;
         }
         Point3D point=  P0.add(v.scale(t));
 
-        return List.of(point);
+        return List.of(new GeoPoint(this,point));
+
     }
 
     public Vector getNormal(){return normal;}

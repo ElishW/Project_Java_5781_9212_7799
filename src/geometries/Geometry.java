@@ -19,9 +19,10 @@ public abstract class Geometry implements Intersectable {
     }
 
     /**
-     * setter of emission field according to builder patter
+     * setter of emission field according to builder pattern
      */
-    public void setEmission(Color color){
+    public Geometry setEmission(Color color){
         emission=color;
+        return this;
     }
 }

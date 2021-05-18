@@ -6,44 +6,33 @@ import primitives.Color;
 
 public class Scene {
 
-    public String name;
-    public Color background = Color.BLACK;
-    public AmbientLight ambientLight = new AmbientLight(Color.BLACK,0);
-    public Geometries geometries = new Geometries();
 
-    public Scene(String _name){
-        name=_name;
-        geometries=new Geometries();
-    }
-    public Scene setAmbientLight(AmbientLight _amLight){
-        ambientLight=_amLight;
-        return this;
-    }
-    public Scene setBackground(Color _color){
-        background=_color;
-        return this;
-    }
-    /**
-     * Builder Scene
-     */
-    public static class BuilderScene{
+        private final String _name;
 
         public Color background = Color.BLACK;
-        public AmbientLight ambientLight = new AmbientLight(Color.BLACK,0);
-        public Geometries geometries = new Geometries();
+        public AmbientLight ambientlight= new AmbientLight(new Color(192, 192, 192),1.d); ;
+        public Geometries geometries = null;
 
-        public BuilderScene setBackground(Color _color){
-            background=_color;
-            return this;
-        }
-        public BuilderScene setAmbientLight(AmbientLight _amLight){
-            ambientLight=_amLight;
-            return this;
-        }
-        public BuilderScene setGeometries(Geometries _geo){
-            geometries=_geo;
-            return this;
+        public Scene(String name) {
+            _name = name;
+            geometries= new Geometries();
         }
 
-    }
+        //chaining set methods (this NOT a builder pattern)
+
+        public Scene setBackground(Color background) {
+            this.background = background;
+            return  this;
+        }
+
+        public Scene setAmbientLight(AmbientLight ambientlight) {
+            this.ambientlight = ambientlight;
+            return this;
+        }
+
+        public Scene setGeometries(Geometries geometries) {
+            this.geometries = geometries;
+            return  this;
+        }
+
 }

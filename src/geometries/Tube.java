@@ -35,12 +35,11 @@ public class Tube extends Geometry{
         return radius;
     }
 
-    /**
-     * @param ray
-     * @return List of intersectable Point3D if they exist or null
-     */
+
     @Override
-    public List<Point3D> findIntersections(Ray ray){return null;}
+    public List<GeoPoint> findGeoIntersections(Ray _ray) {
+        return null;
+    }
 
     @Override
     public String toString() {

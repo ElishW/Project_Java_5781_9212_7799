@@ -18,12 +18,7 @@ public class Triangle extends Polygon {
         return plane.getNormal();
     }
 
-    /**
-     * @param ray
-     * @return List of intersectable Point3D if they exist or null
-     */
-    @Override
-    public List<Point3D> findIntersections(Ray ray){return super.findIntersections(ray);}
+
 
 
 }

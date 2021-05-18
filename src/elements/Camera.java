@@ -16,7 +16,7 @@ public class Camera {
     private double _width;
     private double _height;
 
-     Camera(BuilderCamera builder) {
+     public Camera(BuilderCamera builder) {
         _p0 = builder._p0;
         _vTo = builder._vTo;
         _vUp = builder._vUp;

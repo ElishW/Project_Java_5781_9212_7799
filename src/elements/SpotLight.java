@@ -14,6 +14,11 @@ public class SpotLight extends PointLight{
         direction = v;
     }
 
+    public SpotLight(Color col, Point3D point, Vector v) {
+        super(col, point);
+        direction = v;
+    }
+
     /**
      * This function calculates the intensity of a points and returns the new color
      *

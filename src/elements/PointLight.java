@@ -32,6 +32,14 @@ public class PointLight extends Light implements LightSource{
         kQ=_kQ;
     }
 
+    public PointLight(Color col,Point3D point){
+        super(col);
+        position=point;
+        kC=1;
+        kL=0;
+        kQ=0;
+    }
+
     /**
      * This function calculates the intensity of a points and returns the new color
      *
@@ -60,17 +68,17 @@ public class PointLight extends Light implements LightSource{
     /*
      Getters according to Builder pattern
      */
-    public PointLight setkC(double kC) {
+    public PointLight setKc(double kC) {
         this.kC = kC;
         return this;
     }
 
-    public PointLight setkL(double kL) {
+    public PointLight setKl(double kL) {
         this.kL = kL;
         return this;
     }
 
-    public PointLight setkQ(double kQ) {
+    public PointLight setKq(double kQ) {
         this.kQ = kQ;
         return this;
     }

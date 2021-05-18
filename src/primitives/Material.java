@@ -2,6 +2,8 @@ package primitives;
 
 
 public class Material {
+
+
     double kS=0,kD=0;
     int nShininess=0;
 
@@ -16,8 +18,23 @@ public class Material {
         return this;
     }
 
-    public Material setnShininess(int nShininess) {
+    public Material setShininess(int nShininess) {
         this.nShininess = nShininess;
         return this;
+    }
+
+    /*
+    Getters
+     */
+    public double getKs() {
+        return kS;
+    }
+
+    public double getKd() {
+        return kD;
+    }
+
+    public int getShininess() {
+        return nShininess;
     }
 }

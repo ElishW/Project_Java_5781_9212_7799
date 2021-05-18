@@ -2,18 +2,16 @@ package elements;
 
 import primitives.Color;
 
-public class AmbientLight {
+public class AmbientLight extends Light {
 
-    private Color intensity;
+    public AmbientLight(){
+        super(Color.BLACK);
+    }
 
     public AmbientLight(Color Ia, double kA){
-        intensity=new Color(Ia.scale(kA));
+        super(new Color(Ia.scale(kA)));
     }
 
-    //Getter
-    public Color getIntensity() {
-        return intensity;
-    }
 
 
 }

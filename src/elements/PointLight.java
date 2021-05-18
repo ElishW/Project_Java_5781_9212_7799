@@ -9,7 +9,7 @@ public class PointLight extends Light implements LightSource{
     private Point3D position;
 
 
-    private double kC, kL, kQ;
+    private double kC=1, kL=0, kQ=0;
 
     /*
     Default constructor
@@ -49,9 +49,9 @@ public class PointLight extends Light implements LightSource{
     @Override
     public Color getIntensity(Point3D p) {
 
-        double d = this.getL(p).length(); //distance
+        double d = position.distance(p); //distance
         double tmp = kC+kL*d+kQ*(d*d);
-        return (super.getIntensity().scale(1/tmp));
+        return (getIntensity().scale(1/tmp));
     }
 
     /**
@@ -62,7 +62,7 @@ public class PointLight extends Light implements LightSource{
      */
     @Override
     public Vector getL(Point3D p) {
-        return new Vector(p.subtract(position));
+        return position.subtract(p);
     }
 
     /*

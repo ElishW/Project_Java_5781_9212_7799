@@ -37,7 +37,8 @@ public class RayTracerBasic extends RayTracerBase {
         Vector v = ray.getDir();
         Vector n = intersection.geometry.getNormal(intersection.point);
         double nv = alignZero(n.dotProduct(v));
-        if (nv == 0) return Color.BLACK;
+        if (nv == 0)
+            return Color.BLACK;
         Material material = intersection.geometry.getMaterial();
         int nShininess = material.getShininess();
         double kd = material.getKd(), ks = material.getKs();

@@ -180,6 +180,8 @@ public class VectorTest {
         assertFalse("normalize() function creates a new object",v2!=v3);
         //TC02: verify if the function returns a vector which the length equals 1
         assertFalse("normalize() result is not a unit vector",v1.normalize().length()==0);
+        //TC03: verify if the function returns a vector which the length equals 1
+        assertTrue("normalize() result is not a unit vector",v1.normalize().length()==1)  ;
 
     }
 

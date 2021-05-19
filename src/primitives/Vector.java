@@ -101,6 +101,39 @@ public class Vector {
         return head.equals(vector.head);
     }
 
+    /**
+     * This function rotates a vector according to the angle theta sent as parameter
+     * @param axis the vector to rotate
+     * @param theta the angle of rotation
+     */
+    public void rotateVector(Vector axis, double theta) {
+        double x = this.head.getX();
+        double y = this.head.getY();
+        double z = this.head.getZ();
+
+        double u = axis.head.getX();
+        double v = axis.head.getY();
+        double w = axis.head.getZ();
+
+        double v1 = u * x + v * y + w * z;
+
+        double thetaRad = Math.toRadians(theta);
+
+        double xPrime = u * v1 * (1d - Math.cos(thetaRad))
+                + x * Math.cos(thetaRad)
+                + (-w * y + v * z) * Math.sin(thetaRad);
+
+        double yPrime = v * v1 * (1d - Math.cos(thetaRad))
+                + y * Math.cos(thetaRad)
+                + (w * x - u * z) * Math.sin(thetaRad);
+
+        double zPrime = w * v1 * (1d - Math.cos(thetaRad))
+                + z * Math.cos(thetaRad)
+                + (-v * x + u * y) * Math.sin(thetaRad);
+
+        this.head = new Point3D(xPrime, yPrime, zPrime);
+    }
+
     @Override
     public String toString() {
         return "Vector{" +

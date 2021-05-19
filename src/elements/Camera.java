@@ -74,6 +74,32 @@ public class Camera {
         return new Ray(_p0, Pij.subtract(_p0));
     }
 
+    /**
+     * Move camera (for bonus)
+     * @param right shift
+     * @param to shift
+     * @param up shift
+     */
+    public Camera moveCamera(double up, double right, double to) {
+        if (up == 0 && right == 0 && to == 0) return this;
+        if (up != 0) this._p0.add(_vUp.scale(up));
+        if (right != 0) this._p0.add(_vRight.scale(right));
+        if (to != 0) this._p0.add(_vTo.scale(to));
+        return this;
+    }
+
+    /**
+     * Turn Camera (for bonus)
+     * @param axis is the new direction vector
+     * @param theta is the angle of rotation
+     */
+    public Camera turnCamera(Vector axis, double theta) {
+        if (theta == 0) return this;
+        this._vUp.rotateVector(axis, theta);
+        this._vRight.rotateVector(axis, theta);
+        this._vTo.rotateVector(axis, theta);
+        return this;
+    }
 
 
     /**

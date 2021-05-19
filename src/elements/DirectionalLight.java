@@ -18,6 +18,7 @@ public class DirectionalLight extends Light implements LightSource{
     public DirectionalLight(Color col,Vector v){
         super(col);
         direction=v;
+        direction.normalize();
     }
 
     /**
@@ -39,6 +40,6 @@ public class DirectionalLight extends Light implements LightSource{
      */
     @Override
     public Vector getL(Point3D p) {
-        return direction.normalize();
+        return direction.normalized();
     }
 }

@@ -66,7 +66,7 @@ public class RayTracerBasic extends RayTracerBase {
 
     private Color calcDiffusive(double kd, Vector l, Vector n, Color lightIntensity) {
         l.normalize();
-        return lightIntensity.scale(kd*Math.abs(alignZero(l.dotProduct(n))));
+        return lightIntensity.reduce(1/(kd*Math.abs(alignZero(l.dotProduct(n)))));
     }
 
 }

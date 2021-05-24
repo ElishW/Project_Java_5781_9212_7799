@@ -16,9 +16,7 @@ public class PointLight extends Light implements LightSource{
      */
     public PointLight(){
         super(Color.BLACK);
-        kC=1;
-        kL=0;
-        kQ=0;
+
     }
 
     /*
@@ -35,9 +33,7 @@ public class PointLight extends Light implements LightSource{
     public PointLight(Color col,Point3D point){
         super(col);
         position=point;
-        kC=1;
-        kL=0;
-        kQ=0;
+
     }
 
     /**
@@ -49,7 +45,7 @@ public class PointLight extends Light implements LightSource{
     @Override
     public Color getIntensity(Point3D p) {
 
-        double d = position.distance(p); //distance
+        double d = position.subtract(p).length(); //distance
         double tmp = kC+kL*d+kQ*(d*d);
         return (getIntensity().reduce(tmp));
     }

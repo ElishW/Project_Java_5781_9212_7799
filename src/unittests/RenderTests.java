@@ -40,7 +40,7 @@ public class RenderTests {
 		ImageWriter imageWriter = new ImageWriter("base render test 222", 1000, 1000);
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
-				.setScene(scene) //
+				//.setScene(scene) //
 				.setCamera(camera) //
 				.setRayTracer(new RayTracerBasic(scene));
 
@@ -72,7 +72,7 @@ public class RenderTests {
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setScene(scene) //
+				//.setScene(scene) //
 				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();
@@ -93,7 +93,7 @@ public class RenderTests {
 		Render render = new Render() //
 				.setImageWriter(imageWriter) //
 				.setCamera(camera) //
-				.setScene(scene)//
+				//.setScene(scene)//
 				.setRayTracer(new RayTracerBasic(scene));
 
 		render.renderImage();

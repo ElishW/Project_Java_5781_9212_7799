@@ -8,8 +8,7 @@ public class AmbientLight extends Light {
         super(Color.BLACK);
     }
 
-    public AmbientLight(Color Ia, double kA){
-        super(new Color(Ia.scale(kA)));
+    public AmbientLight(Color Ia, double kA){ super(Ia.scale(kA));
     }
 
 

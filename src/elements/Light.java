@@ -4,7 +4,7 @@ import primitives.*;
 /**
  * Adding lights sources with Light class
  */
-class Light {
+abstract class Light {
 
      private final Color intensity;
 

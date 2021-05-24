@@ -33,29 +33,36 @@ public class Render {
     }
 
     public void renderImage() {
-        try
-        {
-            if (imageWriter == null)
-                throw new MissingResourceException("missing imageWriter", ImageWriter.class.getName(), "");
-           // if (scene == null)
-             //   throw new MissingResourceException("missing scene", Scene.class.getName(), "");
-            if (camera == null)
-                throw new MissingResourceException("missing camera", Camera.class.getName(), "");
-            if (rayTracer == null)
-                throw new MissingResourceException("missing rayTracerBase", RayTracerBase.class.getName(), "");
-        }
-        catch (MissingResourceException e)
-        {
-            throw new UnsupportedOperationException("Not implemented" + e.getClassName());
-        }
-        Color pixelColor;
-        for (int i=0; i<imageWriter.getNx(); i++) {
-            for (int j=0; j<imageWriter.getNy(); j++) {
-                pixelColor = rayTracer.traceRay(camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(),i,j));
-                imageWriter.writePixel(i,j,pixelColor);	 //color the pixel
+        try {
+            if (imageWriter == null) {
+                throw new MissingResourceException("missing resource", ImageWriter.class.getName(), "");
             }
+            //if (scene == null) {
+             //   throw new MissingResourceException("missing resource", Scene.class.getName(), "");
+          //  }
+            if (camera == null) {
+                throw new MissingResourceException("missing resource", Camera.class.getName(), "");
+            }
+            if (rayTracer == null) {
+                throw new MissingResourceException("missing resource", RayTracerBase.class.getName(), "");
+            }
+
+            //rendering the image
+            int nX = imageWriter.getNx();
+            int nY = imageWriter.getNy();
+            for (int i = 0; i < nY; i++) {
+                for (int j = 0; j < nX; j++) {
+                    Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
+                    Color pixelColor = rayTracer.traceRay(ray);
+                    imageWriter.writePixel(j, i, pixelColor);
+                }
+            }
+        } catch (MissingResourceException e) {
+            throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }
-        }
+            }
+
+
         public void printGrid ( int interval, Color color)
         {
             if (imageWriter == null)

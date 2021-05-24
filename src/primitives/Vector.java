@@ -72,7 +72,7 @@ public class Vector {
 
     public Vector normalized()
     {
-        Vector v = new Vector(this);
+        Vector v = new Vector(this.head);
         v.normalize();
         return v;
     }

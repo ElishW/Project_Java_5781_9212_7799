@@ -3,6 +3,8 @@ package elements;
 import primitives.*;
 import primitives.Vector;
 
+import static primitives.Util.isZero;
+
 public class Camera {
 
     /**
@@ -112,16 +114,30 @@ public class Camera {
      */
     public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
     {
-        Point3D Pc=p0.add(vTo.scale(distance));					//center
-        double Ry=height/nY;									//pixel height
-        double Rx=width/nX;										//pixel width
-        double xj=(j-(nX-1)/2.0)*Rx;							//how much we move horizontally
-        double yi=-(i-(nY-1)/2.0)*Ry;							//how much we move vertically
-        Point3D Pij=Pc;
-        if(!Util.isZero(xj)) Pij=Pij.add(vRight.scale(xj));  	//move horizontally
-        if(!Util.isZero(yi)) Pij=Pij.add(vUp.scale(yi));		//move vertically
-        Vector Vij=p0.subtract(Pij); 							//Pij-p0
-        return new Ray(p0,Vij); 		//return the ray with p0 and the vector director (normalized by the ctor of ray)
+        Point3D Pc = p0.add(vTo.scale(distance));
+
+        double Rx = width / nX;
+        double Ry = height / nY;
+
+        Point3D Pij = Pc;
+
+        double Xj = (j - (nX - 1) / 2d) * Rx;
+        double Yi = -(i - (nY - 1) / 2d) * Ry;
+
+        if (isZero(Xj) && isZero(Yi)) {
+            return new Ray(p0, Pij.subtract(p0));
+        }
+        if (isZero(Xj)) {
+            Pij = Pij.add(vUp.scale(Yi));
+            return new Ray(p0, Pij.subtract(p0));
+        }
+        if (isZero(Yi)) {
+            Pij = Pij.add(vRight.scale(Xj));
+            return new Ray(p0, Pij.subtract(p0));
+        }
+
+        Pij = Pij.add(vRight.scale(Xj).add(vUp.scale(Yi)));
+        return new Ray(p0, Pij.subtract(p0));
     }
 
     /**

@@ -4,12 +4,12 @@ import elements.LightSource;
 import geometries.*;
 import primitives.*;
 import scene.Scene;
-
 import java.util.List;
 import geometries.Intersectable.GeoPoint;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase {
+
     public RayTracerBasic(Scene _scene) {
         super(_scene);
     }

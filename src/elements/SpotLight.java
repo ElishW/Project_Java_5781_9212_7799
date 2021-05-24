@@ -7,9 +7,9 @@ public class SpotLight extends PointLight {
     private Vector direction;
 
 
-    /*
+    /**
     Constructor with parameters
-     */
+     **/
 
     public SpotLight(Color col, Point3D point, Vector v) {
         super(col, point);

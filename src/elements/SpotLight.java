@@ -2,7 +2,7 @@ package elements;
 import primitives.*;
 import primitives.Point3D;
 import primitives.Vector;
-public class SpotLight extends PointLight{
+public class SpotLight extends PointLight {
 
     private Vector direction;
 
@@ -10,10 +10,6 @@ public class SpotLight extends PointLight{
     /*
     Constructor with parameters
      */
-    public SpotLight(Color col, Point3D point, double _kC, double _kL, double _kQ, Vector v) {
-        super(col, point, _kC, _kL, _kQ);
-        direction = v;
-    }
 
     public SpotLight(Color col, Point3D point, Vector v) {
         super(col, point);
@@ -28,17 +24,7 @@ public class SpotLight extends PointLight{
      */
     @Override
     public Color getIntensity(Point3D p) {
-        return super.getIntensity(p).scale(Math.max(direction.normalize().dotProduct(getL(p)),0));
+        return super.getIntensity(p).scale(Math.max(direction.normalize().dotProduct(getL(p)), 0));
     }
 
-    /**
-     * This function calculates and returns the direction of the light source
-     *
-     * @param p
-     * @return a directional vector
-     */
-  @Override
-    public Vector getL(Point3D p) {
-       return direction.substractP(p).normalize();
-   }
 }

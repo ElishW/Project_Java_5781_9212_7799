@@ -14,22 +14,27 @@ public class RayTracerBasic extends RayTracerBase {
         super(_scene);
     }
 
+    /**
+     * function traceRay
+     *
+     * @param _ray
+     * @return the color of of the intersection point through this ray If there is
+     *         no intersection with this ray, return the background color
+     *
+     */
     @Override
     public Color traceRay(Ray _ray) {
         var intersections = scene.geometries.findGeoIntersections(_ray);
-        if (intersections != null) {
-            Intersectable.GeoPoint closestPoint = _ray.findClosestGeoPoint(intersections);
-            return calcColor(closestPoint,_ray);
-        }
-        //there isn't intersection
-        return scene.background;
+        if (intersections == null)
+            return scene.background; // If there is no intersection, return the background color
+        GeoPoint closestPoint = _ray.findClosestGeoPoint(intersections); // Find the closest intersection point
+        return calcColor(closestPoint, _ray); // Find the color of the intersection point (Ambient light)
     }
 
     private Color calcColor(GeoPoint point, Ray ray)
     {
-        return scene.ambientlight.getIntensity()
-                .add(point.geometry.getEmission())
-                // add calculated light contribution from all light sources)
+        return scene.ambientlight.getIntensity().add(point.geometry.getEmission())
+                // add calculated light contribution from all light sources
                 .add(calcLocalEffects(point, ray));
     }
 
@@ -49,8 +54,8 @@ public class RayTracerBasic extends RayTracerBase {
                 l = l.normalize();
                 n = n.normalize();
                 double dp = l.dotProduct(n); 						// help parameter for the next functions
-                color = color.add(calcDiffusive(material.getKd(), lightIntensity, dp),
-                        calcSpecular(material.getKs(), l, n, v, material.getShininess(), lightIntensity, dp));
+                color = color.add(calcDiffusive(material.kD, lightIntensity, dp),
+                        calcSpecular(material.kS, l, n, v, material.nShininess, lightIntensity, dp));
             }
         }
         return color;

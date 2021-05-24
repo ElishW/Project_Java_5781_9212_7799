@@ -1,77 +1,127 @@
 package elements;
 
-import primitives.Point3D;
-import primitives.Ray;
+import primitives.*;
 import primitives.Vector;
 
-import static primitives.Util.isZero;
-
 public class Camera {
-    final private Point3D _p0;
-    final private Vector _vTo;
-    final private Vector _vUp;
-    final private Vector _vRight;
 
-    private double _distance;
-    private double _width;
-    private double _height;
+    /**
+     * Class camera
+     */
 
-     public Camera(BuilderCamera builder) {
-        _p0 = builder._p0;
-        _vTo = builder._vTo;
-        _vUp = builder._vUp;
-        _vRight = builder._vRight;
-        _height = builder._height;
-        _width = builder._width;
-        _distance = builder._distance;
+    private Point3D p0;				//camera localization
+    private Vector vTo;				//vector director "to" of the camera
+    private Vector vUp;				//vector director "up" of the camera
+    private Vector vRight;			//vector director "right" of the camera
+    private double width;			//width of the view plane
+    private double height;			//height of the view plane
+    private double distance;		//distance from the camera to the view plane
+
+
+
+    @Override
+    public String toString() {
+        return "Camera [p0=" + p0 + ", vTo=" + vTo + ", vUp=" + vUp + ", vRight=" + vRight + ", width=" + width
+                + ", height=" + height + ", distance=" + distance + "]";
     }
 
-    public Camera setDistance(double distance) {
-        _distance = distance;
-        return this;
+
+    /**
+     * @return the p0
+     */
+    public Point3D getp0() {
+        return p0;
     }
 
+
+    /**
+     * @return the vTo
+     */
+    public Vector getvTo() {
+        return vTo;
+    }
+
+
+    /**
+     * @return the vUp
+     */
+    public Vector getvUp() {
+        return vUp;
+    }
+
+
+    /**
+     * @return the vRight
+     */
+    public Vector getvRight() {
+        return vRight;
+    }
+
+    /**
+     * @param p0
+     * @param vTo
+     * @param vUp
+     */
+    public Camera(Point3D p0, Vector vTo, Vector vUp) {
+        if (vUp.dotProduct(vTo)==0) {
+            this.p0 = p0;
+            this.vTo = vTo;
+            this.vUp = vUp;
+            this.vRight= vTo.crossProduct(vUp);
+            this.vTo.normalize();
+            this.vUp.normalize();
+            this.vRight.normalize();
+        }
+        else {
+            throw new IllegalArgumentException("The vector vUp have to be orthogonal to vto");
+        }
+    }
+
+    /**
+     *
+     * @param width
+     * @param height
+     * @return the object Camera
+     */
     public Camera setViewPlaneSize(double width, double height) {
-        _width = width;
-        _height = height;
+        this.width=width;
+        this.height=height;
         return this;
     }
 
-    //Camera getters methods
-    public double getWidth() {
-        return _width;
+
+    /**
+     *
+     * @param distance
+     * @return the object Camera
+     */
+    public Camera setDistance(double distance)
+    {
+        this.distance=distance;
+        return this;
     }
 
-    public double getHeight() {
-        return _height;
-    }
 
-    // constructs a ray which is passing through pixel(i,j) of the view plane
-    public Ray constructRayThroughPixel(int nX, int nY, int j, int i) {
-        Point3D Pc = _p0.add(_vTo.scale(_distance));
-
-        double Rx = _width / nX;
-        double Ry = _height / nY;
-
-        Point3D Pij = Pc;
-
-        double Xj = (j - (nX - 1) / 2d) * Rx;
-        double Yi = -(i - (nY - 1) / 2d) * Ry;
-
-        if (isZero(Xj) && isZero(Yi)) {
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
-        if (isZero(Xj)) {
-            Pij = Pij.add(_vUp.scale(Yi));
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
-        if (isZero(Yi)) {
-            Pij = Pij.add(_vRight.scale(Xj));
-            return new Ray(_p0, Pij.subtract(_p0));
-        }
-
-        Pij = Pij.add(_vRight.scale(Xj).add(_vUp.scale(Yi)));
-        return new Ray(_p0, Pij.subtract(_p0));
+    /**
+     *
+     * @param nX : number of columns : width of a row
+     * @param nY : number of rows : height of a column
+     * @param j : column of the pixel
+     * @param i : row of the pixel
+     * @return the Ray constructed through the pixel
+     */
+    public Ray constructRayThroughPixel(int nX, int nY, int j, int i)
+    {
+        Point3D Pc=p0.add(vTo.scale(distance));					//center
+        double Ry=height/nY;									//pixel height
+        double Rx=width/nX;										//pixel width
+        double xj=(j-(nX-1)/2.0)*Rx;							//how much we move horizontally
+        double yi=-(i-(nY-1)/2.0)*Ry;							//how much we move vertically
+        Point3D Pij=Pc;
+        if(!Util.isZero(xj)) Pij=Pij.add(vRight.scale(xj));  	//move horizontally
+        if(!Util.isZero(yi)) Pij=Pij.add(vUp.scale(yi));		//move vertically
+        Vector Vij=p0.subtract(Pij); 							//Pij-p0
+        return new Ray(p0,Vij); 		//return the ray with p0 and the vector director (normalized by the ctor of ray)
     }
 
     /**
@@ -82,9 +132,9 @@ public class Camera {
      */
     public Camera moveCamera(double up, double right, double to) {
         if (up == 0 && right == 0 && to == 0) return this;
-        if (up != 0) this._p0.add(_vUp.scale(up));
-        if (right != 0) this._p0.add(_vRight.scale(right));
-        if (to != 0) this._p0.add(_vTo.scale(to));
+        if (up != 0) this.p0.add(vUp.scale(up));
+        if (right != 0) this.p0.add(vRight.scale(right));
+        if (to != 0) this.p0.add(vTo.scale(to));
         return this;
     }
 
@@ -95,67 +145,10 @@ public class Camera {
      */
     public Camera turnCamera(Vector axis, double theta) {
         if (theta == 0) return this;
-        this._vUp.rotateVector(axis, theta);
-        this._vRight.rotateVector(axis, theta);
-        this._vTo.rotateVector(axis, theta);
+       // this.vUp.rotateVector(axis, theta);
+      //  this.vRight.rotateVector(axis, theta);
+       // this.vTo.rotateVector(axis, theta);
         return this;
-    }
-
-
-    /**
-     * Builder Class for Camera
-     */
-    public static class BuilderCamera {
-        final private Point3D _p0;
-        final private Vector _vTo;
-        final private Vector _vUp;
-        final private Vector _vRight;
-
-        private double _distance = 10;
-        private double _width = 1;
-        private double _height = 1;
-
-        public BuilderCamera setDistance(double distance) {
-            _distance = distance;
-            return this;
-        }
-
-
-        public BuilderCamera setViewPlaneWidth(double width) {
-            _width = width;
-            return this;
-        }
-
-        public BuilderCamera setViewPlaneHeight(double height) {
-            _height = height;
-            return this;
-        }
-
-        public BuilderCamera setViewPlaneSize(double width, double height) {
-            _width = width;
-            _height = height;
-            return this;
-        }
-
-        public Camera build() {
-            Camera camera = new Camera(this);
-            return camera;
-        }
-
-        public BuilderCamera(Point3D p0, Vector vTo, Vector vUp) {
-            _p0 = p0;
-
-            if (!isZero(vTo.dotProduct(vUp))) {
-                throw new IllegalArgumentException("vto and vup are not orthogonal");
-            }
-
-            _vTo = vTo.normalized();
-            _vUp = vUp.normalized();
-
-            _vRight = _vTo.crossProduct(_vUp);
-
-        }
-
     }
 
 }

@@ -7,10 +7,10 @@ import primitives.*;
 import java.util.MissingResourceException;
 
 public class Render {
-    private ImageWriter imageWriter;
+     ImageWriter imageWriter;
    // private Scene scene;
-    private Camera camera;
-    private RayTracerBase rayTracer;
+     Camera camera;
+     RayTracerBase rayTracer;
 
     public Render setImageWriter(ImageWriter _imageWriter) {
         imageWriter = _imageWriter;
@@ -48,17 +48,13 @@ public class Render {
         {
             throw new UnsupportedOperationException("Not implemented" + e.getClassName());
         }
-            int nX = imageWriter.getNx();
-            int nY = imageWriter.getNy();
-            for (int i = 0; i < nY; i++)
-            {
-                for (int j = 0; j < nX; j++)
-                {
-                    Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
-                    Color pixelColor = rayTracer.traceRay(ray);
-                    imageWriter.writePixel(j, i, pixelColor);
-                }
+        Color pixelColor;
+        for (int i=0; i<imageWriter.getNx(); i++) {
+            for (int j=0; j<imageWriter.getNy(); j++) {
+                pixelColor = rayTracer.traceRay(camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(),i,j));
+                imageWriter.writePixel(i,j,pixelColor);	 //color the pixel
             }
+        }
         }
         public void printGrid ( int interval, Color color)
         {

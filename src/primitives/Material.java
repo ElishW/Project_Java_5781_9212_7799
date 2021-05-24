@@ -4,8 +4,8 @@ package primitives;
 public class Material {
 
 
-    double kS=0,kD=0;
-    int nShininess=0;
+    public double kS=0,kD=0;
+    public int nShininess=0;
 
     public Material(double kD, double kS, int nShininess) {
         this.kD = kD;
@@ -19,12 +19,12 @@ public class Material {
         this.nShininess = 0;
     }
     // chaining setters (with builder pattern)
-    public Material setkS(double kS) {
+    public Material setKs(double kS) {
         this.kS = kS;
         return this;
     }
 
-    public Material setkD(double kD) {
+    public Material setKd(double kD) {
         this.kD = kD;
         return this;
     }
@@ -36,7 +36,7 @@ public class Material {
 
     /*
     Getters
-     */
+
     public double getKs() {
         return kS;
     }
@@ -48,4 +48,6 @@ public class Material {
     public int getShininess() {
         return nShininess;
     }
+
+     */
 }

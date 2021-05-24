@@ -7,6 +7,17 @@ public class Material {
     double kS=0,kD=0;
     int nShininess=0;
 
+    public Material(double kD, double kS, int nShininess) {
+        this.kD = kD;
+        this.kS = kS;
+        this.nShininess = nShininess;
+    }
+
+    public Material() {
+        this.kD = 0;
+        this.kS = 0;
+        this.nShininess = 0;
+    }
     // chaining setters (with builder pattern)
     public Material setkS(double kS) {
         this.kS = kS;

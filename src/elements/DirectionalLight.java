@@ -8,7 +8,7 @@ public class DirectionalLight extends Light implements LightSource{
 
 
     /**
-    Constructor with 2 parameters
+     Constructor with 2 parameters
      **/
     public DirectionalLight(Color col,Vector v){
         super(col);

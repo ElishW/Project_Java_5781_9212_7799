@@ -1,157 +1,106 @@
-package elements;
-
-import primitives.*;
-
 /**
- * @author Avigail Amar & Yocheved Watenberg
  *
  */
-public class Camera {
+package renderer;
+
+import java.util.MissingResourceException;
+
+import elements.Camera;
+import primitives.Color;
+
+
+public class Render {
 
 	/**
-	 * Class camera 
+	 * Class render to create the color matrix of the image from the scene
+	 *
 	 */
-	
-	private Point3D p0;				//camera localization 
-	private Vector vTo;				//vector director "to" of the camera
-	private Vector vUp;				//vector director "up" of the camera
-	private Vector vRight;			//vector director "right" of the camera 
-	private double width;			//width of the view plane 
-	private double height;			//height of the view plane 
-	private double distance;		//distance from the camera to the view plane 
-	
-	
-	
-	@Override
-	public String toString() {
-		return "Camera [p0=" + p0 + ", vTo=" + vTo + ", vUp=" + vUp + ", vRight=" + vRight + ", width=" + width
-				+ ", height=" + height + ", distance=" + distance + "]";
-	}
-
+	ImageWriter imageWriter;
+	Camera camera;
+	RayTracerBase rayTracerBase;
 
 	/**
-	 * @return the p0
+	 * @param imageWriter the imageWriter to set
+	 * @return the object itself for threading
 	 */
-	public Point3D getp0() {
-		return p0;
-	}
-
-
-	/**
-	 * @return the vTo
-	 */
-	public Vector getvTo() {
-		return vTo;
-	}
-
-
-	/**
-	 * @return the vUp
-	 */
-	public Vector getvUp() {
-		return vUp;
-	}
-
-
-	/**
-	 * @return the vRight
-	 */
-	public Vector getvRight() {
-		return vRight;
-	}
-
-	/**
-	 * @param p0
-	 * @param vTo
-	 * @param vUp
-	 */
-	public Camera(Point3D p0, Vector vTo, Vector vUp) {
-		if (vUp.dotProduct(vTo)==0) {
-		this.p0 = p0;
-		this.vTo = vTo;
-		this.vUp = vUp;	
-		this.vRight= vTo.crossProduct(vUp);
-		this.vTo.normalize();
-		this.vUp.normalize();
-		this.vRight.normalize();
-		}
-		else {
-			throw new IllegalArgumentException("The vector vUp have to be orthogonal to vto");
-		}
-	}
-	
-	/** 
-	 * 
-	 * @param width
-	 * @param height
-	 * @return the object Camera
-	 */
-	public Camera setViewPlaneSize(double width, double height) {
-		this.width=width;
-		this.height=height;
-		return this; 
-	}
-	
-
-	/** 
-	 * 
-	 * @param distance
-	 * @return the object Camera
-	 */
-	public Camera setDistance(double distance) 
-	{
-		this.distance=distance;
+	public Render setImageWriter(ImageWriter imageWriter) {
+		this.imageWriter = imageWriter;
 		return this;
 	}
-	
-	
+
 	/**
-	 * 
-	 * @param nX : number of columns : width of a row
-	 * @param nY : number of rows : height of a column
-	 * @param j : column of the pixel
-	 * @param i : row of the pixel
-	 * @return the Ray constructed through the pixel
+	 * @param camera the camera to set
+	 * @return the object itself for threading
 	 */
-	public Ray constructRayThroughPixel(int nX, int nY, int j, int i) 
-	{
-	Point3D Pc=p0.add(vTo.scale(distance));					//center 
-	double Ry=height/nY;									//pixel height
-	double Rx=width/nX;										//pixel width 
-	double xj=(j-(nX-1)/2.0)*Rx;							//how much we move horizontally
-	double yi=-(i-(nY-1)/2.0)*Ry;							//how much we move vertically
-	Point3D Pij=Pc;											
-	if(!Util.isZero(xj)) Pij=Pij.add(vRight.scale(xj));  	//move horizontally 
-	if(!Util.isZero(yi)) Pij=Pij.add(vUp.scale(yi));		//move vertically 
-	Vector Vij=p0.subtract(Pij); 							//Pij-p0
-	return new Ray(p0,Vij); 		//return the ray with p0 and the vector director (normalized by the ctor of ray) 
+	public Render setCamera(Camera camera) {
+		this.camera = camera;
+		return this;
+	}
+	/**
+	 * @param rayTracerBase the rayTracerBase to set
+	 * @return the object itself for threading
+	 */
+	public Render setRayTracerBase(RayTracerBase rayTracerBase) {
+		this.rayTracerBase = rayTracerBase;
+		return this;
 	}
 
-	    /**
-         * Move camera (for bonus)
-         * @param right shift
-         * @param to shift
-         * @param up shift
-         */
-        public Camera moveCamera(double up, double right, double to) {
-            if (up == 0 && right == 0 && to == 0) return this;
-            if (up != 0) this._p0.add(_vUp.scale(up));
-            if (right != 0) this._p0.add(_vRight.scale(right));
-            if (to != 0) this._p0.add(_vTo.scale(to));
-            return this;
-        }
 
-        /**
-         * Turn Camera (for bonus)
-         * @param axis is the new direction vector
-         * @param theta is the angle of rotation
-         */
-        public Camera turnCamera(Vector axis, double theta) {
-            if (theta == 0) return this;
-            this._vUp.rotateVector(axis, theta);
-            this._vRight.rotateVector(axis, theta);
-            this._vTo.rotateVector(axis, theta);
-            return this;
-        }
+
+	@Override
+	public String toString() {
+		return "Render [imageWriter=" + imageWriter + ", camera=" + camera + ", rayTracerBase="
+				+ rayTracerBase + "]";
+	}
+
+	/**
+	 * this function check that there are all the fields
+	 * and then fill the matrix of color
+	 *
+	 */
+	public void renderImage() {
+		try {
+		if (imageWriter==null)
+			throw new MissingResourceException("there is no imageWriter for the render", this.toString(), imageWriter.toString());
+		if (camera==null)
+			throw new MissingResourceException("there is no camera for the render", this.toString(), camera.toString());
+		if (rayTracerBase==null)
+			throw new MissingResourceException("there is no rayTraceBase for the render", this.toString(), rayTracerBase.toString());
+		}
+		catch (MissingResourceException e){
+			throw new UnsupportedOperationException();
+		}
+		Color pixelColor;
+		for (int i=0; i<imageWriter.getNx(); i++) {
+			for (int j=0; j<imageWriter.getNy(); j++) {
+				pixelColor = rayTracerBase.traceRay(camera.constructRayThroughPixel(imageWriter.getNx(), imageWriter.getNy(),i,j));
+				imageWriter.writePixel(i,j,pixelColor);	 //color the pixel
+			}
+		}
+	}
+
+	/**
+	 * function to color a grid
+	 * @param interval
+	 * @param color
+	 */
+	public void printGrid(int interval, Color color) {
+		if (imageWriter==null)
+			throw new MissingResourceException("there is no imageWriter for the render", this.toString(), imageWriter.toString());
+		for (int i=0; i<imageWriter.getNx(); i++)
+			for (int j=0; j<imageWriter.getNy(); j++)
+				if ((i%interval==0)||(j%interval==0))
+					imageWriter.writePixel(i,j,color);	 //color the grid
+	}
+
+	/**
+	 * if there is no error, write the matrix of color to the image
+	 *
+	 */
+	public void writeToImage(){
+		if (imageWriter==null)
+			throw new MissingResourceException("there is no imageWriter for the render", this.toString(), imageWriter.toString());
+		imageWriter.writeToImage();						 //create the image
+	}
 
 }

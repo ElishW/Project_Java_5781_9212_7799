@@ -9,7 +9,7 @@ public class PointLight extends Light implements LightSource{
     private Point3D position;
     private double kC=1, kL=0, kQ=0;
     /**
-    Constructor with parameters
+     Constructor with parameters
      **/
 
     public PointLight(Color col,Point3D point){

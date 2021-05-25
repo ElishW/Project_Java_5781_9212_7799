@@ -36,18 +36,14 @@ public class Material {
 
     /*
     Getters
-
     public double getKs() {
         return kS;
     }
-
     public double getKd() {
         return kD;
     }
-
     public int getShininess() {
         return nShininess;
     }
-
      */
 }

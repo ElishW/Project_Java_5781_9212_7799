@@ -6,21 +6,21 @@ import primitives.*;
  */
 abstract class Light {
 
-     protected Color intensity;
+    protected Color intensity;
 
-     /*
-     Constructor
-      */
-     protected Light(Color color){
-      this.intensity=color;
-     }
+    /*
+    Constructor
+     */
+    protected Light(Color color){
+        this.intensity=color;
+    }
 
- /**
-  * Getter
-  * @return intensity
-  */
- public Color getIntensity() {
-      return intensity;
-     }
+    /**
+     * Getter
+     * @return intensity
+     */
+    public Color getIntensity() {
+        return intensity;
+    }
 
 }

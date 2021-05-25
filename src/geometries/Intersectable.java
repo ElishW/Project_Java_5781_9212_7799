@@ -48,7 +48,7 @@ public interface Intersectable {
             if (o == null) return false;
             if (!(o instanceof GeoPoint)) return false;
             GeoPoint other = (GeoPoint) o;
-           // return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
+            // return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
             return this.geometry.equals(other.geometry) && this.point.equals(other.point);
 
         }

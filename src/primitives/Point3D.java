@@ -60,7 +60,7 @@ public class Point3D {
         if (this == o) return true;
         if (o == null) return false;
         if (!(o instanceof Point3D)) return false;
-            Point3D other = (Point3D) o;
+        Point3D other = (Point3D) o;
         return this.x.equals(other.x) && this.y.equals(other.y)&& this.z.equals(other.z);
 
     }

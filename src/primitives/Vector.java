@@ -88,7 +88,7 @@ public class Vector {
         return this;
     }
 
- public Point3D getHead() {
+    public Point3D getHead() {
         return head;
     }
 

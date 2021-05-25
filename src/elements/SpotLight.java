@@ -27,4 +27,6 @@ public class SpotLight extends PointLight {
         return super.getIntensity(p).scale(Math.max(direction.normalize().dotProduct(getL(p)), 0));
     }
 
+
+
 }

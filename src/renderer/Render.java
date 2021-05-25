@@ -8,7 +8,6 @@ import java.util.MissingResourceException;
 
 public class Render {
     ImageWriter imageWriter;
-    // private Scene scene;
     Camera camera;
     RayTracerBase rayTracer;
 
@@ -17,11 +16,7 @@ public class Render {
         return this;
     }
 
-    /*   public Render setScene(Scene _scene) {
-           scene = _scene;
-           return this;
-       }
-   */
+
     public Render setCamera(Camera _camera) {
         camera = _camera;
         return this;

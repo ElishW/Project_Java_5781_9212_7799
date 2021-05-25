@@ -9,6 +9,7 @@ import geometries.Intersectable.GeoPoint;
 import static primitives.Util.alignZero;
 
 public class RayTracerBasic extends RayTracerBase {
+    private static final double DELTA = 0.1;
 
     public RayTracerBasic(Scene _scene) {
         super(_scene);
@@ -49,13 +50,15 @@ public class RayTracerBasic extends RayTracerBase {
         for (LightSource lightSource : scene.lights) {
             Vector l = lightSource.getL(intersection.point);
             double nl = Util.alignZero(n.dotProduct(l));
-            if (nl * nv > 0) { 												// sign(nl) == sing(nv)
-                Color lightIntensity = lightSource.getIntensity(intersection.point);
-                l = l.normalize();
-                n = n.normalize();
-                double dp = l.dotProduct(n); 						// help parameter for the next functions
-                color = color.add(calcDiffusive(material.kD, lightIntensity, dp),
-                        calcSpecular(material.kS, l, n, v, material.nShininess, lightIntensity, dp));
+            if (nl * nv > 0) { // sign(nl) == sing(nv)
+                if(unshaded(lightSource,l,n,intersection)) {
+                    Color lightIntensity = lightSource.getIntensity(intersection.point);
+                    l = l.normalize();
+                    n = n.normalize();
+                    double dp = l.dotProduct(n);                        // help parameter for the next functions
+                    color = color.add(calcDiffusive(material.kD, lightIntensity, dp),
+                            calcSpecular(material.kS, l, n, v, material.nShininess, lightIntensity, dp));
+                }
             }
         }
         return color;
@@ -71,5 +74,26 @@ public class RayTracerBasic extends RayTracerBase {
         return lightIntensity.scale(kD * Math.abs(dp));
     }
 
+    /**
+     * Verify if there isn't any shadow between the point and the light source
+     * @param l
+     * @param n
+     * @param geopoint
+     * @return
+     */
+    private boolean unshaded(LightSource lightSource,Vector l, Vector n, GeoPoint geopoint ){
+        Vector lightDirection = l.scale(-1); // from point to light source
+        Vector delta = n.scale(n.dotProduct(lightDirection) > 0 ? DELTA : - DELTA);
+        Point3D point = geopoint.point.add(delta);
+        Ray lightRay = new Ray(point, lightDirection);
+        List<GeoPoint> intersections = scene.geometries.findGeoIntersections(lightRay);
+        if (intersections == null) return true;
+        double lightDistance = lightSource.getDistance(geopoint.point);
+        for (GeoPoint gp : intersections) {
+            if (alignZero(gp.point.distance(geopoint.point)-lightDistance) <= 0)
+                return false;
+        }
+        return true;
+    }
 
 }

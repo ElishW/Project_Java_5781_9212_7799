@@ -161,9 +161,9 @@ public class Camera {
      */
     public Camera turnCamera(Vector axis, double theta) {
         if (theta == 0) return this;
-       // this.vUp.rotateVector(axis, theta);
-      //  this.vRight.rotateVector(axis, theta);
-       // this.vTo.rotateVector(axis, theta);
+        // this.vUp.rotateVector(axis, theta);
+        //  this.vRight.rotateVector(axis, theta);
+        // this.vTo.rotateVector(axis, theta);
         return this;
     }
 

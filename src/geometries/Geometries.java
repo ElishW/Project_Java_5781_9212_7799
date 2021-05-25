@@ -16,7 +16,7 @@ public class Geometries implements Intersectable {
         We chose to use LinkedList and not ArrayList because LinkedList is
         more memory efficient and faster at runtime than ArrayList
          */
-               lstOfGeometries = new LinkedList<Intersectable>();
+        lstOfGeometries = new LinkedList<Intersectable>();
     }
 
     public Geometries(Intersectable... geometries){

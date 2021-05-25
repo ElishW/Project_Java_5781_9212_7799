@@ -11,8 +11,8 @@ import static primitives.Util.isZero;
 
 public class Cylinder extends Tube{
     double _height;
-     Plane _base1;
-     Plane _base2;
+    Plane _base1;
+    Plane _base2;
 
     public Vector getNormal(Point3D p)
     {

@@ -4,61 +4,69 @@ import primitives.Color;
 import primitives.Point3D;
 import primitives.Vector;
 
-public class PointLight extends Light implements LightSource{
+/**
+ *
+ */
+public class PointLight extends Light implements LightSource {
+
 
     private Point3D position;
-    private double kC=1, kL=0, kQ=0;
-    /**
-     Constructor with parameters
-     **/
+    private double kC = 1;
+    private double kL = 0;
+    private double kQ = 0;
 
-    public PointLight(Color col,Point3D point){
-        super(col);
-        position=point;
 
+    /**do
+     * PointLight ctor
+     *
+     * @param intensity
+     * @param position
+     */
+    public PointLight(Color intensity, Point3D position) {
+        super(intensity);
+        this.position = position;
     }
 
-
-    /*
-     Getters according to Builder pattern
+    /**
+     * @param kC the kC to set
      */
     public PointLight setKc(double kC) {
         this.kC = kC;
         return this;
     }
 
+    /**
+     * @param kL the kL to set
+     */
     public PointLight setKl(double kL) {
         this.kL = kL;
         return this;
     }
 
+    /**
+     * @param kQ the kQ to set
+     */
     public PointLight setKq(double kQ) {
         this.kQ = kQ;
         return this;
     }
-
     /**
-     * This function calculates the intensity of a points and returns the new color
-     *
      * @param p
-     * @return the new color with intensity
+     * @return the intensity of the object on a specific point which is reduced by the distance of the point
      */
     @Override
-    public Color getIntensity(Point3D p) {
+    public Color getIntensity(Point3D p)
+    {
         double distance=position.subtract(p).length();
-        double tmp=kC+kL*distance+kQ*distance*distance;
-        return intensity.reduce(tmp) ;
+        return intensity.reduce(kC+kL*distance+kQ*distance*distance) ;
     }
-
     /**
-     * This function calculates and returns the direction of the light source
-     *
      * @param p
-     * @return a directional vector
+     * @return the vector direction from the light to the point (normalized)
      */
     @Override
     public Vector getL(Point3D p) {
-        return position.subtract(p).normalized();
+        return p.subtract(position).normalize();
     }
 
 }

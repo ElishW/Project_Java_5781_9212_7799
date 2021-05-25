@@ -79,6 +79,7 @@ public class Vector {
 
     public Vector normalize()
     {
+
         if(this.length()==0)
         {
             throw new ArithmeticException("cannot divide by 0");

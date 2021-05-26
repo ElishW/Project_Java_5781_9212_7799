@@ -163,6 +163,8 @@ public class RayTracerBasic extends RayTracerBase {
         if(intersections==null)
             return null;
         return ray.findClosestGeoPoint(intersections); //return the closest point in those intersection points
+
+
     }
 
 }

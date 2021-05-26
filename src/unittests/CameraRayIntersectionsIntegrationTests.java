@@ -41,13 +41,11 @@ public class CameraRayIntersectionsIntegrationTests {
             }
         }
 
-        System.out.format("there are %d points:%n", count);
         if (lstOfPoints != null) {
             for (var item : lstOfPoints) {
                 System.out.println(item);
             }
         }
-        System.out.println();
 
         assertEquals("Wrong number of intersections",expected, count);
     }

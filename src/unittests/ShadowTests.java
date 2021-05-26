@@ -135,7 +135,7 @@ public class ShadowTests {
 						.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)) //
 		);
 		scene.lights.add( //
-				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-75, -75, 65), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
 		Render render = new Render(). //
@@ -160,7 +160,7 @@ public class ShadowTests {
 						.setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(30)) //
 		);
 		scene.lights.add( //
-				new SpotLight(new Color(400, 240, 0), new Point3D(-100, -100, 200), new Vector(1, 1, -3)) //
+				new SpotLight(new Color(400, 240, 0), new Point3D(-85, -85, 100), new Vector(1, 1, -3)) //
 						.setKl(1E-5).setKq(1.5E-7));
 
 		Render render = new Render(). //

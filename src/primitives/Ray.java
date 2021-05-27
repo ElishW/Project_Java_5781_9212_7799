@@ -10,6 +10,9 @@ import static primitives.Util.isZero;
 public class Ray {
     Point3D p0;
     Vector dir;
+    private static final double DELTA = 0.1;
+
+
 
     public Ray(Point3D p, Vector d) {
         this.p0 = new Point3D(p);
@@ -31,6 +34,23 @@ public class Ray {
         return p0.add(dir.scale(t));
     }
 
+    /**
+     * Constructor with 3 parameters to add the parameter DELTA
+     */
+    public Ray(Point3D head, Vector direction, Vector normal) {
+        if (direction.dotProduct(normal) == 0) {
+            p0 = head;
+            dir = direction;
+        } else {
+            int sign = 1;
+            // if (direction.dotProduct(normal)>0)
+            // sign=1;
+            if (direction.dotProduct(normal) < 0)
+                sign = -1;
+            p0 = head.add(normal.scale(sign * DELTA));
+            dir = direction;
+        }
+    }
     /**
      * Returns the closest point from the head of the ray
      * @param pointsList : list of all the points crossed by the ray

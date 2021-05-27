@@ -72,6 +72,7 @@ public class Sphere extends Geometry {
             //Point3D P1 = P0.add(v.scale(t1));
             Point3D P1 =ray.getPoint(t1);
 
+
             return List.of(new GeoPoint(this,P1));
         }
         //if t2>0 and t1<=0

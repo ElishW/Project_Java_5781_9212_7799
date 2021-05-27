@@ -140,14 +140,14 @@ public class RayTracerBasic extends RayTracerBase {
     public Ray constructReflectedRay(Point3D p,Vector v, Vector n){
         v=v.normalize();
         Vector r=v.substractV(n.scale(v.dotProduct(n)).scale(-2));
-        return new Ray(p,r);
+        return new Ray(p,r.normalized());
     }
 
     /**
      * Calculates and returns the refraction ray
      */
     public Ray constructRefractedRay(Point3D p,Vector v,Vector n){
-        return new Ray(p,v);
+        return new Ray(p,v.normalized());
     }
 
     /**
@@ -155,9 +155,9 @@ public class RayTracerBasic extends RayTracerBase {
      */
     private GeoPoint findClosestIntersection(Ray ray){
         List<GeoPoint> intersections = new LinkedList<GeoPoint>();
-        for(Intersectable geometrie : scene.geometries.lstOfGeometries){ //pass in every geometrie in the scene
-            if(geometrie.findGeoIntersections(ray)!=null)
-                intersections.addAll(geometrie.findGeoIntersections(ray)); //foreach geometry, intersections points are
+        for(Intersectable geometry : scene.geometries.lstOfGeometries){ //pass in every geometry in the scene
+            if(geometry.findGeoIntersections(ray)!=null)
+                intersections.addAll(geometry.findGeoIntersections(ray)); //foreach geometry, intersections points are
                                                                     //added to the intersection list
         }
         if(intersections==null)

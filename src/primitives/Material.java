@@ -6,8 +6,8 @@ public class Material {
 
     public double kS=0;
     public double kD=0;
-    public double kT=0.0;
-    public double kR=0.0;
+    public double kT=0d;
+    public double kR=0d;
     public int nShininess=0;
 
     public Material(double kD, double kS, int nShininess) {

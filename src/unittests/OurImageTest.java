@@ -20,7 +20,7 @@ public class OurImageTest {
         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setViewPlaneSize(200, 200).setDistance(1000);
         scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2))
-                .setBackground(new Color(java.awt.Color.PINK));
+                .setBackground(new Color(java.awt.Color.ORANGE));
 
         scene.geometries.add(//
                 new Sphere(new Point3D(50, 50, -45), 40)//

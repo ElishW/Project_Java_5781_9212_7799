@@ -34,7 +34,8 @@ public class OurImageTest {
                 .setMaterial(new Material().setKd(0.5).setKs(0.5).setShininess(10).setKt(0.2)),
         new Triangle(new Point3D(-100, -100, -100), new Point3D(-70, 70, -140), new Point3D(75, 75, -150)) //
                 .setEmission(new Color(java.awt.Color.RED)) //
-                .setMaterial(new Material().setKd(0.1).setKs(0.5).setShininess(100)));
+                .setMaterial(new Material().setKd(0.1).setKs(0.5).setShininess(100)),
+
 
 
         scene.lights.add( //

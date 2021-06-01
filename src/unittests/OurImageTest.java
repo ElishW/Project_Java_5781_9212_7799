@@ -19,8 +19,6 @@ public class OurImageTest {
     public void createImage() {
         Camera camera = new Camera(new Point3D(0, 0, 1000), new Vector(0, 0, -1), new Vector(0, 1, 0)) //
                 .setViewPlaneSize(200, 200).setDistance(1000);
-        scene.setAmbientLight(new AmbientLight(new Color(java.awt.Color.WHITE), 0.2))
-                .setBackground(new Color(java.awt.Color.PINK));
 
         scene.geometries.add(//
                 new Sphere(new Point3D(50, 50, -45), 40)//
@@ -37,14 +35,18 @@ public class OurImageTest {
                         .setMaterial(new Material().setKd(0.1).setKs(0.5).setShininess(100)),
                 new Sphere(new Point3D(80, 40, -4), 10)//
                         .setEmission(new Color(java.awt.Color.CYAN))//
-                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)));
+                        .setMaterial(new Material().setKd(0.2).setKs(0.2).setShininess(30).setKt(0.6)),
+                new Sphere(new Point3D(-50, 40, 77),23)//
+                        .setEmission(new Color(24,24,24))
+                        .setMaterial(new Material().setKr(0.8).setKt(0.8)));
 
         // ;
 
 
         scene.lights.add( //
                 new SpotLight(new Color(700, 340, 400), new Point3D(-80, -90, 30), new Vector(2, 2, -6)) //
-                        .setKl(1E-5).setKq(1.5E-7));
+                        .setKl(1E-5).setKq(1.5E-7));//
+         scene.lights.add(new PointLight(new Color(java.awt.Color.WHITE),new Point3D(30,30,30)));
         scene.lights.add(new SpotLight(new Color(1020, 400, 400), new Point3D(-750, -750, -150), new Vector(-1, -1, -4)) //
                 .setKl(0.00001).setKq(0.000005));
         ImageWriter imageWriter = new ImageWriter("OurImageTest", 600, 600);

@@ -85,6 +85,8 @@ public class ReflectionRefractionTests {
 
 		render.renderImage();
 		render.writeToImage();
+
+
 	}
 
 	/**
@@ -118,5 +120,7 @@ public class ReflectionRefractionTests {
 
 		render.renderImage();
 		render.writeToImage();
+
+
 	}
 }

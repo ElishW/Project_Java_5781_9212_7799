@@ -17,7 +17,7 @@ public class SuperSamplingTest {
 
 
     @Test
-    public void twoSpheres() {
+    public void simpleSphere() {
          Scene scene = new Scene("Test scene");
 
 
@@ -32,7 +32,7 @@ public class SuperSamplingTest {
             .setKl(0.0004).setKq(0.0000006));
 
     Render render = new Render() //
-            .setImageWriter(new ImageWriter("superSamplingSphere", 500, 500)) //
+            .setImageWriter(new ImageWriter("superSamplingSphere2.0", 500, 500)) //
             .setCamera(camera) //
             .setRayTracer(new RayTracerBasic(scene));
 		render.renderImage();

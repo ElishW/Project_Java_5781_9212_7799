@@ -43,15 +43,25 @@ public class Render {
             }
 
             //rendering the image
-            int nX = imageWriter.getNx();
-            int nY = imageWriter.getNy();
-            for (int i = 0; i < nY; i++) {
-                for (int j = 0; j < nX; j++) {
-                    Ray ray = camera.constructRayThroughPixel(nX, nY, j, i);
-                    Color pixelColor = rayTracer.traceRay(ray);
-                    imageWriter.writePixel(j, i, pixelColor);
+            int nX = imageWriter.getNx()*2;
+            int nY = imageWriter.getNy()*2;
+            for (int i = 0; i < nY; i+=2) {
+                for (int j = 0; j < nX; j+=2) {
+                    Ray rays[] = {camera.constructRayThroughPixel(nX, nY, j + 1, i),
+                            camera.constructRayThroughPixel(nX, nY, j, i + 1),
+                            camera.constructRayThroughPixel(nX, nY, j + 1, i + 1),
+                            camera.constructRayThroughPixel(nX, nY, j, i)};
+
+                    Color pixelColor = Color.BLACK;
+
+                    for (Ray r : rays) {
+                        pixelColor = pixelColor.add(rayTracer.traceRay(r));
+
+                    }
+
+                    imageWriter.writePixel(j/2, i/2, pixelColor.reduce(4));
                 }
-            }
+        }
         } catch (MissingResourceException e) {
             throw new UnsupportedOperationException("Not implemented yet" + e.getClassName());
         }

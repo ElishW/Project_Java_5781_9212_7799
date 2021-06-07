@@ -42,7 +42,8 @@ public class Point3D {
 
     public Point3D add(Vector v)
     {
-        return new Point3D(this.getX()+v.head.getX(),this.getY()+v.head.getY(),this.getZ()+v.head.getZ());
+        Point3D p= new Point3D(this.getX()+v.head.getX(),this.getY()+v.head.getY(),this.getZ()+v.head.getZ());
+        return p;
     }
 
     public double distanceSquared(Point3D p)

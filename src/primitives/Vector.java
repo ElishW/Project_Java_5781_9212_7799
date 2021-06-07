@@ -47,7 +47,8 @@ public class Vector {
 
     public Vector scale(double s)
     {
-        return new Vector((this.head.getX())*s,(this.head.getY())*s,(this.head.getZ())*s);
+        Vector v =  new Vector((this.head.getX())*s,(this.head.getY())*s,(this.head.getZ())*s);
+        return v;
     }
 
     public double dotProduct(Vector v)

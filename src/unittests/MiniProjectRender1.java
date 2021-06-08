@@ -79,12 +79,15 @@ public class MiniProjectRender1 {
                         .setEmission(new Color(24,24,24))
                         .setMaterial(new Material().setKd(0.25).setKs(0.4).setShininess(50).setKr(0.1).setKt(1)),
         new Sphere(new Point3D(1,30,0),10)//
-        .setEmission(new Color(java.awt.Color.ORANGE))//
-                .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4)),
+        .setEmission(new Color(java.awt.Color.YELLOW))//
+                .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)),
                 new Sphere(new Point3D(35,20,30),5)//
                         .setEmission(new Color(java.awt.Color.BLUE))//
-                        .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4))
-                );
+                        .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)),
+               new Sphere(new Point3D(0,5,-50),3)//
+                        .setEmission(new Color(java.awt.Color.DARK_GRAY))//
+                        .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)));
+
 
 
        scene.lights.add( //
@@ -93,12 +96,17 @@ public class MiniProjectRender1 {
         scene.lights.add( //
                 new SpotLight(new Color(java.awt.Color.WHITE),  new Point3D(30, 30, 10), new Vector(2, 2, -6))//
                         .setKl(1E-5).setKq(1.5E-7));
-       scene.lights.add( //
-               new PointLight(new Color(java.awt.Color.WHITE),  new Point3D(1, 30, 0))//
-                 .setKl(0.00001).setKq(0.000001));
+
+
+      scene.lights.add( //
+               new PointLight(new Color(java.awt.Color.YELLOW),  new Point3D(0, 30, 0))//
+                 .setKl(1E-5).setKq(1.5E-7));
         scene.lights.add( //
-                new PointLight(new Color(java.awt.Color.WHITE),  new Point3D(35, 20, 30))//
-                        .setKl(0.00001).setKq(0.000001));
+                new PointLight(new Color(java.awt.Color.BLUE),  new Point3D(35, 20, 30))//
+                        .setKl(1E-5).setKq(1.5E-7));
+        scene.lights.add( //
+                new PointLight(new Color(java.awt.Color.DARK_GRAY),  new Point3D(0,0,-50))//
+                        .setKl(1E-5).setKq(1.5E-7));
         scene.lights.add(new PointLight(new Color(java.awt.Color.BLUE),new Point3D(0,1000,0)));
 
 

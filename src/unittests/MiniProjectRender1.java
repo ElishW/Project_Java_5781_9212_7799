@@ -78,15 +78,21 @@ public class MiniProjectRender1 {
                         new Point3D(40, -50, 40))//
                         .setEmission(new Color(24,24,24))
                         .setMaterial(new Material().setKd(0.25).setKs(0.4).setShininess(50).setKr(0.1).setKt(1)),
-        new Sphere(new Point3D(1,30,0),10)//
+        new Sphere(new Point3D(1,30,0),15)//
         .setEmission(new Color(java.awt.Color.YELLOW))//
-                .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)),
-                new Sphere(new Point3D(35,20,30),5)//
+                .setMaterial(new Material().setShininess(50).setKr(0.4).setKt(0.4)),
+                new Sphere(new Point3D(25,10,-30),4)//
+                        .setEmission(new Color(219,95,194))//
+                        .setMaterial(new Material().setShininess(50).setKr(0.4).setKt(0.4)),
+               new Sphere(new Point3D(5,-5,-50),3)//
                         .setEmission(new Color(java.awt.Color.BLUE))//
-                        .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)),
-               new Sphere(new Point3D(0,5,-50),3)//
-                        .setEmission(new Color(java.awt.Color.DARK_GRAY))//
-                        .setMaterial(new Material().setShininess(50).setKd(0.55).setKs(0.4).setKr(0.4).setKt(0.4)));
+                        .setMaterial(new Material().setShininess(50).setKr(0.4).setKt(0.4)),
+                new Sphere(new Point3D(-40,20,-10),9)//
+                        .setEmission(new Color(java.awt.Color.RED))//
+                        .setMaterial(new Material().setShininess(50).setKr(0.4).setKt(0.4)),
+                new Sphere(new Point3D(-60,35,-30),6)//
+                        .setEmission(new Color(45,221,222))//
+                        .setMaterial(new Material().setKr(0.4).setKt(0.4 )));
 
 
 
@@ -99,15 +105,21 @@ public class MiniProjectRender1 {
 
 
       scene.lights.add( //
-               new PointLight(new Color(java.awt.Color.YELLOW),  new Point3D(0, 30, 0))//
+               new PointLight(new Color(java.awt.Color.YELLOW),  new Point3D(1, 30, 0))//
                  .setKl(1E-5).setKq(1.5E-7));
         scene.lights.add( //
-                new PointLight(new Color(java.awt.Color.BLUE),  new Point3D(35, 20, 30))//
+                new PointLight(new Color(219,95,194),  new Point3D(25,10,-30))//
                         .setKl(1E-5).setKq(1.5E-7));
         scene.lights.add( //
-                new PointLight(new Color(java.awt.Color.DARK_GRAY),  new Point3D(0,0,-50))//
+                new PointLight(new Color(java.awt.Color.BLUE),  new Point3D(5,-5,-50))//
                         .setKl(1E-5).setKq(1.5E-7));
-        scene.lights.add(new PointLight(new Color(java.awt.Color.BLUE),new Point3D(0,1000,0)));
+        scene.lights.add( //
+                new PointLight(new Color(java.awt.Color.RED),  new Point3D(-40,20,-10))//
+                        .setKl(1E-5).setKq(1.5E-7));
+        scene.lights.add( //
+                new PointLight(new Color(45,221,222),  new Point3D(-60,35,-30))//
+                        .setKl(1E-5).setKq(1.5E-7));
+        scene.lights.add(new PointLight(new Color(java.awt.Color.BLUE),new Point3D(0,-50,0)));
 
 
         Render render = new Render() //

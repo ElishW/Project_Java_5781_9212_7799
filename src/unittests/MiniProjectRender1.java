@@ -9,12 +9,11 @@ import geometries.Sphere;
 import geometries.Triangle;
 import org.junit.Test;
 
-import primitives.Color;
-import primitives.Material;
-import primitives.Point3D;
-import primitives.Vector;
+import primitives.*;
 import renderer.*;
 import scene.Scene;
+
+import java.util.Random;
 
 /**
  * Authors : Elisheva Wechsler & Noa Ghozlan
@@ -33,7 +32,7 @@ public class MiniProjectRender1 {
         scene.geometries.add( //
                 new Sphere(new Point3D(0, 30, 0), 80) //
                 .setEmission(new Color(0,0,0))//
-                .setMaterial(new Material().setKd(0.255).setKs(0.4).setShininess(50).setKr(0.1).setKt(1)),
+                .setMaterial(new Material().setKd(0.255).setKs(0.4).setShininess(50).setKr(0).setKt(1)),
              /* new Triangle(new Point3D(-660, 640, 640), new Point3D(640, -660, 640),
                      new Point3D(-577, -577, -810)) //
                     .setEmission(new Color(20,20,20)) //
@@ -93,8 +92,24 @@ public class MiniProjectRender1 {
                 new Sphere(new Point3D(-60,35,-30),6)//
                         .setEmission(new Color(45,221,222))//
                         .setMaterial(new Material().setKr(0.4).setKt(0.4 )));
+        for (var i=0; i < 200; i ++) {
+            Random r = new Random();
+            // min and max value of the radius
+            double randomRadius = 0.001 + (0.6 - 0.001) * r.nextDouble();
+            double randomMult = 10+r.nextInt(60);
+            Coordinate x = new Coordinate(randomMult * Math.sin(i));
+            Coordinate y = new Coordinate(30+randomMult * Math.cos(i));
+            int randomZ = -25+r.nextInt(30);
+            if(randomZ>-2&&randomZ<2){randomZ=5;}
+            Coordinate z = new Coordinate(i/randomZ);
+            Point3D position = new Point3D(x,y,z);
 
-
+            scene.geometries.add(
+                    new Sphere(position,randomRadius)//
+                            .setEmission(new Color(java.awt.Color.WHITE)) //
+                            .setMaterial(new Material().setKt(0.99))
+            );
+        }
 
        scene.lights.add( //
                 new SpotLight(new Color(java.awt.Color.WHITE),  new Point3D(-80, -90, 30), new Vector(2, 2, -6))//
@@ -102,6 +117,7 @@ public class MiniProjectRender1 {
         scene.lights.add( //
                 new SpotLight(new Color(java.awt.Color.WHITE),  new Point3D(30, 30, 10), new Vector(2, 2, -6))//
                         .setKl(1E-5).setKq(1.5E-7));
+
 
 
       scene.lights.add( //
@@ -129,5 +145,15 @@ public class MiniProjectRender1 {
         render.renderImage();
         render.writeToImage();
 
+       camera.moveCamera(0,0,150);
+        Render renderZ = new Render()//
+                .setImageWriter(new ImageWriter("Snow Ball Zoom", 500, 500)) //
+                .setCamera(camera) //
+                .setRayTracer(new RayTracerBasic(scene));
+        renderZ.renderImage();
+        renderZ.writeToImage();
+
     }
+
+
 }

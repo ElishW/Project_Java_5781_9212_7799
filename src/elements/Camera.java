@@ -148,9 +148,9 @@ public class Camera {
      */
     public Camera moveCamera(double up, double right, double to) {
         if (up == 0 && right == 0 && to == 0) return this;
-        if (up != 0) this.p0.add(vUp.scale(up));
-        if (right != 0) this.p0.add(vRight.scale(right));
-        if (to != 0) this.p0.add(vTo.scale(to));
+        if (up != 0) p0=this.p0.add(vUp.scale(up));
+        if (right != 0) p0=this.p0.add(vRight.scale(right));
+        if (to != 0) p0=this.p0.add(vTo.scale(to));
         return this;
     }
 
